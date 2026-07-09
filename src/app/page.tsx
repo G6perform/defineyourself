@@ -1,6 +1,7 @@
 import Image from "next/image";
 import HeroCarousel from "@/components/HeroCarousel";
 import StripeButton from "@/components/StripeButton";
+import { images } from "@/lib/images";
 
 const pillars = [
   { title: "Access", desc: "Removing barriers so every athlete gets a real chance." },
@@ -15,31 +16,31 @@ const programs = [
   {
     title: "Athlete Development Scholarships",
     desc: "Covering training, coaching, and equipment costs for talented athletes who face financial barriers to high-level development.",
-    image: "https://cdn.durable.co/getty/x9lPxoBdahQJ2gYqkxAiUm5aLGo4Hf6r7QjhCVVLlCaWtTgEPyoRDi0snYt6JWk.jpg",
+    image: images.scholarships,
     alt: "Athletes training",
   },
   {
     title: "Identification Camps",
     desc: "Giving athletes from underserved and under-marketed communities a platform to showcase their skills in front of college and semi-professional recruiters.",
-    image: "https://cdn.durable.co/getty/kGKCyS5u9VVmfPEVhMKwKZFYUVVhM8u2ynYqaFPcf3mUuPGJO3Hn2bG68FLT9fLc.jpg",
+    image: images.idCamps,
     alt: "Youth athlete showcase",
   },
   {
     title: "Elite Athlete Mentorship",
     desc: "Pairing experienced athletes with younger ones for guidance in their sport, financial literacy, mental performance, and personal growth beyond the game.",
-    image: "https://cdn.durable.co/getty/8Uos2SVYSf43zv7sFbDq0uyH3aDWqYU4LfTFB6CRBBrS4EVEwY9c1iR84vG2aTjO.jpg",
+    image: images.mentorship,
     alt: "Mentorship session",
   },
   {
     title: "Performance Access",
     desc: "Partnering with schools and clubs that lack funding to bring advanced combine testing and performance consulting to their athletes.",
-    image: "https://cdn.durable.co/getty/JYl8zcNEkZ5SVNqw0bQPBJPflU5LOkOEkQ4xNOqk2EiQkTqI5fXcUZlAFsPxrcpX.jpg",
+    image: images.performance,
     alt: "Performance testing",
   },
   {
     title: "Define Yourself Teams",
     desc: "Our own youth sports teams — a place to play, compete, and grow within a program built around our mission.",
-    image: "https://cdn.durable.co/getty/N7PdK3SqkNvwJGPXMD1kuxYbYS2nlPuSxQTTJWdCxYoUkiW7FgNJdKajFPkgpGdL.jpg",
+    image: images.teams,
     alt: "Youth sports team",
   },
 ];

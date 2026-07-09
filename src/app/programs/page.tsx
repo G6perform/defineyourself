@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { images } from "@/lib/images";
 
 export const metadata = {
   title: "Our Programs | Define Yourself Inc.",
@@ -50,7 +51,7 @@ export default function Programs() {
       {/* Hero */}
       <section className="relative h-[400px] md:h-[500px] overflow-hidden">
         <Image
-          src="https://cdn.durable.co/getty/x9lPxoBdahQJ2gYqkxAiUm5aLGo4Hf6r7QjhCVVLlCaWtTgEPyoRDi0snYt6JWk.jpg"
+          src={images.programsHero}
           alt="Youth athletes"
           fill
           className="object-cover"

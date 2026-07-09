@@ -2,28 +2,14 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { images } from "@/lib/images";
 
 const slides = [
-  {
-    src: "https://cdn.durable.co/getty/x9lPxoBdahQJ2gYqkxAiUm5aLGo4Hf6r7QjhCVVLlCaWtTgEPyoRDi0snYt6JWk.jpg",
-    alt: "Basketball players in action",
-  },
-  {
-    src: "https://cdn.durable.co/getty/kGKCyS5u9VVmfPEVhMKwKZFYUVVhM8u2ynYqaFPcf3mUuPGJO3Hn2bG68FLT9fLc.jpg",
-    alt: "Soccer training session",
-  },
-  {
-    src: "https://cdn.durable.co/getty/8Uos2SVYSf43zv7sFbDq0uyH3aDWqYU4LfTFB6CRBBrS4EVEwY9c1iR84vG2aTjO.jpg",
-    alt: "Trophy celebration",
-  },
-  {
-    src: "https://cdn.durable.co/getty/JYl8zcNEkZ5SVNqw0bQPBJPflU5LOkOEkQ4xNOqk2EiQkTqI5fXcUZlAFsPxrcpX.jpg",
-    alt: "Youth playing frisbee",
-  },
-  {
-    src: "https://cdn.durable.co/getty/N7PdK3SqkNvwJGPXMD1kuxYbYS2nlPuSxQTTJWdCxYoUkiW7FgNJdKajFPkgpGdL.jpg",
-    alt: "Girl soccer player",
-  },
+  { src: images.hero1, alt: "Basketball court" },
+  { src: images.hero2, alt: "Youth soccer" },
+  { src: images.hero3, alt: "Track athletes running" },
+  { src: images.hero4, alt: "Team huddle" },
+  { src: images.hero5, alt: "Soccer field" },
 ];
 
 export default function HeroCarousel() {
