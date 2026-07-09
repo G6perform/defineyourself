@@ -83,12 +83,12 @@ export default function Contact() {
                 <div>
                   <p className="text-white/40 text-xs uppercase tracking-wider mb-1">Social</p>
                   <a
-                    href="https://www.instagram.com/define_yourself_inc/"
+                    href="https://www.instagram.com/define_yourself_916/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-white/80 hover:text-white transition-colors text-sm"
                   >
-                    @define_yourself_inc
+                    @define_yourself_916
                   </a>
                 </div>
                 <div>

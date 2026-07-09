@@ -50,7 +50,7 @@ export default function Navbar() {
               Contact
             </Link>
             <a
-              href="https://www.instagram.com/define_yourself_inc/"
+              href="https://www.instagram.com/define_yourself_916/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-text-gray hover:text-text-dark transition-colors"

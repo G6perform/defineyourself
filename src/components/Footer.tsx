@@ -56,7 +56,7 @@ export default function Footer() {
               <p className="text-sm text-white/50">Sacramento, California</p>
               <div className="flex gap-4 mt-2">
                 <a
-                  href="https://www.instagram.com/define_yourself_inc/"
+                  href="https://www.instagram.com/define_yourself_916/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/50 hover:text-white transition-colors"
