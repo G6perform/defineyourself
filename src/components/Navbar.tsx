@@ -26,6 +26,12 @@ export default function Navbar() {
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-8">
             <Link
+              href="/mission"
+              className="text-sm font-semibold uppercase tracking-wider text-text-gray hover:text-text-dark transition-colors"
+            >
+              Our Mission
+            </Link>
+            <Link
               href="/programs"
               className="text-sm font-semibold uppercase tracking-wider text-text-gray hover:text-text-dark transition-colors"
             >
@@ -88,6 +94,13 @@ export default function Navbar() {
       {/* Mobile menu */}
       {menuOpen && (
         <div className="md:hidden bg-white border-t border-mid-gray/50 px-4 pb-6">
+          <Link
+            href="/mission"
+            className="block py-3 text-sm font-semibold uppercase tracking-wider text-text-dark"
+            onClick={() => setMenuOpen(false)}
+          >
+            Our Mission
+          </Link>
           <Link
             href="/programs"
             className="block py-3 text-sm font-semibold uppercase tracking-wider text-text-dark"

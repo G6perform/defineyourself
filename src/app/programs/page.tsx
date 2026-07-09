@@ -32,6 +32,16 @@ const programs = [
     desc: "Launching our own youth sports teams, giving young athletes a place to play, compete, and grow within a program built around our mission — pairing real competition with training, mentorship, and development.",
     detail: "More than a team — a program. DY Teams give athletes a place to compete while getting the training, mentorship, and personal development that help them reach their potential on and off the field.",
   },
+  {
+    title: "Financial Literacy",
+    desc: "Teaching athletes how to manage money, build credit, and make smart financial decisions — skills they'll carry long after the final whistle.",
+    detail: "Most athletes never learn about money until it's too late. We teach budgeting, credit building, investing basics, and smart financial decisions early — so our athletes are prepared whether they go pro or pursue a career beyond sport.",
+  },
+  {
+    title: "Career Development",
+    desc: "Preparing athletes for life after sport with career counseling, resume building, networking opportunities, and exposure to professional pathways.",
+    detail: "The game doesn't last forever. We provide career counseling, resume workshops, interview preparation, industry exposure, and professional mentorship — building pathways to fulfilling careers in and beyond sport.",
+  },
 ];
 
 export default function Programs() {
