@@ -1,74 +1,54 @@
-@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Nunito:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Bebas+Neue&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #FBF2DA;
-  --foreground: #2E2E2E;
-  --cream: #FBF2DA;
-  --taupe: #BBAF91;
-  --taupe-dark: #9A8E72;
-  --gold: #ffc000;
-  --gold-dark: #e6ac00;
-  --charcoal: #2E2E2E;
-  --text-secondary: #5C5C5C;
-  --text-dark: #424242;
+  --white: #ffffff;
+  --off-white: #f8f8f8;
+  --light-gray: #f0f0f0;
+  --mid-gray: #e0e0e0;
+  --text-gray: #6b7280;
+  --text-dark: #1a1a1a;
+  --charcoal: #111111;
+  --accent: #ffc000;
+  --accent-dark: #e6ac00;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-cream: var(--cream);
-  --color-taupe: var(--taupe);
-  --color-taupe-dark: var(--taupe-dark);
-  --color-gold: var(--gold);
-  --color-gold-dark: var(--gold-dark);
-  --color-charcoal: var(--charcoal);
-  --color-text-secondary: var(--text-secondary);
+  --color-white: var(--white);
+  --color-off-white: var(--off-white);
+  --color-light-gray: var(--light-gray);
+  --color-mid-gray: var(--mid-gray);
+  --color-text-gray: var(--text-gray);
   --color-text-dark: var(--text-dark);
-  --font-sans: 'Nunito', sans-serif;
-  --font-serif: 'Newsreader', serif;
+  --color-charcoal: var(--charcoal);
+  --color-accent: var(--accent);
+  --color-accent-dark: var(--accent-dark);
+  --font-sans: 'Inter', sans-serif;
+  --font-display: 'Bebas Neue', sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: 'Nunito', sans-serif;
+  background: var(--white);
+  color: var(--text-dark);
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-/* Jagged divider */
-.divider-jagged {
+/* Noise overlay like G6 */
+.noise-overlay {
   position: relative;
 }
-.divider-jagged::after {
+.noise-overlay::before {
   content: '';
   position: absolute;
-  bottom: -20px;
-  left: 0;
-  right: 0;
-  height: 20px;
-  background: linear-gradient(135deg, var(--cream) 33.33%, transparent 33.33%) 0 50%,
-              linear-gradient(225deg, var(--cream) 33.33%, transparent 33.33%) 0 50%;
-  background-size: 20px 40px;
-  z-index: 10;
-}
-
-/* Slant divider */
-.divider-slant {
-  position: relative;
-}
-.divider-slant::after {
-  content: '';
-  position: absolute;
-  bottom: -30px;
-  left: 0;
-  right: 0;
-  height: 30px;
-  background: var(--cream);
-  clip-path: polygon(0 0, 100% 100%, 0 100%);
-  z-index: 10;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
 }
