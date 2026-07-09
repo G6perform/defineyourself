@@ -14,7 +14,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image
-              src="https://cdn.durable.co/blocks/25wDI7wkiV0wP2eleWi3MwyBpNGGLj5AsNiLCGXbvALZmbOBFzQxdXaui785enNd.png"
+              src="/logo.png"
               alt="Define Yourself"
               width={180}
               height={72}

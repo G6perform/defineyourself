@@ -9,11 +9,11 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <Image
-              src="https://cdn.durable.co/blocks/25wDI7wkiV0wP2eleWi3MwyBpNGGLj5AsNiLCGXbvALZmbOBFzQxdXaui785enNd.png"
+              src="/logo.png"
               alt="Define Yourself"
               width={160}
               height={64}
-              className="h-10 w-auto brightness-200 mb-4"
+              className="h-10 w-auto invert brightness-200 mb-4"
             />
             <p className="text-white/50 text-sm leading-relaxed">
               Empowering youth to reach their fullest potential through sport and mentorship.
