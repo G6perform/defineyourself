@@ -1,4 +1,4 @@
-import StripeButton from "@/components/StripeButton";
+import DonateButton from "@/components/DonateButton";
 
 export const metadata = {
   title: "Donate | Define Yourself Inc.",
@@ -60,7 +60,7 @@ export default function Donate() {
             It helps a young athlete attend a camp that changes their trajectory, earn a scholarship that keeps them in their sport, or find a mentor who shows them what is possible.
           </p>
           <div className="flex justify-center">
-            <StripeButton />
+            <DonateButton />
           </div>
         </div>
       </section>

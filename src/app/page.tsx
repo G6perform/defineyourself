@@ -1,6 +1,6 @@
 import Image from "next/image";
 import HeroCarousel from "@/components/HeroCarousel";
-import StripeButton from "@/components/StripeButton";
+import DonateButton from "@/components/DonateButton";
 import { images } from "@/lib/images";
 
 const pillars = [
@@ -228,7 +228,7 @@ export default function Home() {
           <p className="text-white/60 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
             Your contribution directly funds these programs. It helps a young athlete attend a camp that changes their trajectory, earn a scholarship that keeps them in their sport, or find a mentor who shows them what is possible.
           </p>
-          <StripeButton />
+          <DonateButton />
         </div>
       </section>
 
