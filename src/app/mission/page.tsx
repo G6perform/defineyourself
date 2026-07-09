@@ -8,28 +8,28 @@ export const metadata = {
 
 const values = [
   {
-    title: "Athletic Development",
-    desc: "High-level training, coaching, and competition — giving every athlete the resources to reach their potential regardless of background.",
+    title: "Access",
+    desc: "Removing financial and geographic barriers so talented athletes from every background get a real chance to develop.",
   },
   {
     title: "Mentorship",
-    desc: "Pairing young athletes with experienced mentors who guide them in sport, life decisions, and personal growth beyond the game.",
+    desc: "Pairing young athletes with experienced guides who help them navigate sport, school, money, and life beyond the game.",
+  },
+  {
+    title: "Exposure",
+    desc: "Creating platforms for underserved athletes to showcase their talent in front of college and semi-professional recruiters.",
   },
   {
     title: "Education",
-    desc: "Academic support and educational programming that keeps athletes on track in the classroom — because development starts with the mind.",
+    desc: "Academic support, tutoring, and college preparation that keeps athletes on track in the classroom — because development starts with the mind.",
   },
   {
     title: "Financial Literacy",
-    desc: "Teaching athletes how to manage money, build credit, and make smart financial decisions — skills they'll carry long after the final whistle.",
+    desc: "Teaching athletes how to budget, build credit, and make smart financial decisions — skills they'll carry long after the final whistle.",
   },
   {
-    title: "Career Development",
-    desc: "Preparing athletes for life after sport with career counseling, resume building, networking opportunities, and exposure to professional pathways.",
-  },
-  {
-    title: "Community Impact",
-    desc: "Strengthening the communities our athletes come from by investing in youth development and creating a culture of contribution.",
+    title: "Career Readiness",
+    desc: "Preparing athletes for life after sport with career counseling, resume workshops, networking, and exposure to professional pathways.",
   },
 ];
 

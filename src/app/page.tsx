@@ -3,12 +3,12 @@ import HeroCarousel from "@/components/HeroCarousel";
 import StripeButton from "@/components/StripeButton";
 
 const pillars = [
-  { title: "Athletic", desc: "High-level training, coaching, and competition." },
-  { title: "Mental", desc: "Resilience, focus, and competitive mindset." },
+  { title: "Access", desc: "Removing barriers so every athlete gets a real chance." },
+  { title: "Mentorship", desc: "Experienced guides for sport, school, and life." },
+  { title: "Exposure", desc: "Platforms to be seen by recruiters and coaches." },
   { title: "Education", desc: "Academic support and college preparation." },
-  { title: "Financial", desc: "Financial literacy and smart money skills." },
-  { title: "Career", desc: "Career counseling and life after sport." },
-  { title: "Community", desc: "Strengthening where our athletes come from." },
+  { title: "Financial Literacy", desc: "Money skills that last beyond the game." },
+  { title: "Career Readiness", desc: "Preparing athletes for life after sport." },
 ];
 
 const programs = [
