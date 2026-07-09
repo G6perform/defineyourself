@@ -6,7 +6,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Define Yourself: Unlock Potential Through Sports",
   description:
-    "Define Yourself Inc. empowers youth via sports, mentorship, and holistic growth. Non-profit organization dedicated to mental, physical, and social development of young adults.",
+    "Define Yourself Inc. is a 501(c)(3) non-profit dedicated to the mental, physical, and social development of young people through sport. Scholarships, ID camps, mentorship, performance access, and youth teams in Sacramento, CA.",
 };
 
 export default function RootLayout({

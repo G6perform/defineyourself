@@ -3,44 +3,44 @@ import HeroCarousel from "@/components/HeroCarousel";
 import StripeButton from "@/components/StripeButton";
 
 const pillars = [
-  { title: "Physical", desc: "Building athletic foundations through structured training." },
-  { title: "Mental", desc: "Developing resilience, focus, and competitive mindset." },
-  { title: "Social", desc: "Fostering teamwork, communication, and community bonds." },
-  { title: "Leadership", desc: "Cultivating leaders on and off the field." },
-  { title: "Skill", desc: "Sport-specific coaching to elevate performance." },
-  { title: "Character", desc: "Instilling discipline, integrity, and perseverance." },
+  { title: "Mental", desc: "Resilience, focus, and competitive mindset." },
+  { title: "Physical", desc: "High-level athletic training and development." },
+  { title: "Social", desc: "Community, teamwork, and communication." },
+  { title: "Mentorship", desc: "Guidance from experienced athletes and leaders." },
+  { title: "Access", desc: "Closing the gap for underserved athletes." },
+  { title: "Growth", desc: "Building leaders on and off the field." },
 ];
 
 const programs = [
   {
-    title: "Skill Enhancement",
-    image: "https://cdn.durable.co/getty/kGKCyS5u9VVmfPEVhMKwKZFYUVVhM8u2ynYqaFPcf3mUuPGJO3Hn2bG68FLT9fLc.jpg",
-    alt: "Soccer skill training",
-  },
-  {
-    title: "Team Building",
-    image: "https://cdn.durable.co/getty/N7PdK3SqkNvwJGPXMD1kuxYbYS2nlPuSxQTTJWdCxYoUkiW7FgNJdKajFPkgpGdL.jpg",
-    alt: "Team high-five",
-  },
-  {
-    title: "Leadership Training",
-    image: "https://cdn.durable.co/getty/8Uos2SVYSf43zv7sFbDq0uyH3aDWqYU4LfTFB6CRBBrS4EVEwY9c1iR84vG2aTjO.jpg",
-    alt: "Leadership coaching",
-  },
-  {
-    title: "Physical Fitness",
-    image: "https://cdn.durable.co/getty/JYl8zcNEkZ5SVNqw0bQPBJPflU5LOkOEkQ4xNOqk2EiQkTqI5fXcUZlAFsPxrcpX.jpg",
-    alt: "Youth fitness training",
-  },
-  {
-    title: "Confidence Building",
+    title: "Athlete Development Scholarships",
+    desc: "Covering training, coaching, and equipment costs for talented athletes who face financial barriers to high-level development.",
     image: "https://cdn.durable.co/getty/x9lPxoBdahQJ2gYqkxAiUm5aLGo4Hf6r7QjhCVVLlCaWtTgEPyoRDi0snYt6JWk.jpg",
-    alt: "Athletes celebrating",
+    alt: "Athletes training",
   },
   {
-    title: "Life Skills",
-    image: "https://images.unsplash.com/photo-1508802595585-a7e56c972036?w=800",
-    alt: "Youth mentorship",
+    title: "Identification Camps",
+    desc: "Giving athletes from underserved and under-marketed communities a platform to showcase their skills in front of college and semi-professional recruiters.",
+    image: "https://cdn.durable.co/getty/kGKCyS5u9VVmfPEVhMKwKZFYUVVhM8u2ynYqaFPcf3mUuPGJO3Hn2bG68FLT9fLc.jpg",
+    alt: "Youth athlete showcase",
+  },
+  {
+    title: "Elite Athlete Mentorship",
+    desc: "Pairing experienced athletes with younger ones for guidance in their sport, financial literacy, mental performance, and personal growth beyond the game.",
+    image: "https://cdn.durable.co/getty/8Uos2SVYSf43zv7sFbDq0uyH3aDWqYU4LfTFB6CRBBrS4EVEwY9c1iR84vG2aTjO.jpg",
+    alt: "Mentorship session",
+  },
+  {
+    title: "Performance Access",
+    desc: "Partnering with schools and clubs that lack funding to bring advanced combine testing and performance consulting to their athletes.",
+    image: "https://cdn.durable.co/getty/JYl8zcNEkZ5SVNqw0bQPBJPflU5LOkOEkQ4xNOqk2EiQkTqI5fXcUZlAFsPxrcpX.jpg",
+    alt: "Performance testing",
+  },
+  {
+    title: "Define Yourself Teams",
+    desc: "Our own youth sports teams — a place to play, compete, and grow within a program built around our mission.",
+    image: "https://cdn.durable.co/getty/N7PdK3SqkNvwJGPXMD1kuxYbYS2nlPuSxQTTJWdCxYoUkiW7FgNJdKajFPkgpGdL.jpg",
+    alt: "Youth sports team",
   },
 ];
 
@@ -74,27 +74,37 @@ export default function Home() {
       {/* Hero Carousel */}
       <HeroCarousel />
 
-      {/* About / Pillars Section */}
+      {/* Core Message */}
       <section className="py-20 md:py-28 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-text-gray text-sm font-semibold uppercase tracking-[0.2em] mb-6">
+            Why We Exist
+          </p>
+          <h2 className="font-display text-3xl md:text-5xl tracking-wider text-text-dark leading-tight mb-8">
+            THE ATHLETES WITH THE MOST PROMISE OFTEN HAVE THE LEAST ACCESS
+          </h2>
+          <p className="text-text-gray text-lg leading-relaxed max-w-3xl mx-auto">
+            We believe that high-level athletic training and genuine mentorship can teach and inspire the next generation of leaders, prepare them to succeed in every arena of life, and strengthen the communities they come from. We exist to close the gap.
+          </p>
+        </div>
+      </section>
+
+      {/* Six Pillars */}
+      <section className="py-20 md:py-28 bg-off-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center mb-16">
+          <div className="text-center mb-14">
             <p className="text-text-gray text-sm font-semibold uppercase tracking-[0.2em] mb-4">
               Our Approach
             </p>
-            <h2 className="font-display text-4xl md:text-5xl tracking-wider text-text-dark mb-6">
-              EVERY ATHLETE HAS THE POWER TO DEFINE THEMSELVES
+            <h2 className="font-display text-3xl md:text-4xl tracking-wider text-text-dark">
+              HOLISTIC DEVELOPMENT
             </h2>
-            <p className="text-text-gray text-lg leading-relaxed">
-              Define Yourself is dedicated to empowering youth across the United States through sports. We develop the complete athlete — mind, body, and character.
-            </p>
           </div>
-
-          {/* Six Pillars Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {pillars.map((pillar) => (
               <div
                 key={pillar.title}
-                className="bg-off-white p-6 text-center group hover:bg-charcoal transition-colors duration-300"
+                className="bg-white p-6 text-center group hover:bg-charcoal transition-colors duration-300"
               >
                 <h3 className="font-display text-2xl tracking-wider text-text-dark group-hover:text-white mb-2 transition-colors">
                   {pillar.title.toUpperCase()}
@@ -108,35 +118,42 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Programs Grid — G6 "Athletes of G6" style */}
-      <section className="py-20 md:py-28 bg-off-white">
+      {/* Programs — Image Tiles */}
+      <section className="py-20 md:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <p className="text-text-gray text-sm font-semibold uppercase tracking-[0.2em] mb-4">
-              Play Empowers
+              What Your Support Makes Possible
             </p>
-            <h2 className="font-display text-4xl md:text-5xl tracking-wider text-text-dark">
-              UNLOCK POTENTIAL THROUGH PLAY
+            <h2 className="font-display text-3xl md:text-4xl tracking-wider text-text-dark">
+              OUR PROGRAMS
             </h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1">
-            {programs.map((program) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
+            {programs.map((program, i) => (
               <div
                 key={program.title}
-                className="group relative aspect-[4/3] overflow-hidden cursor-pointer"
+                className={`group relative overflow-hidden cursor-pointer ${
+                  i === programs.length - 1 ? "md:col-span-2" : ""
+                }`}
               >
-                <Image
-                  src={program.image}
-                  alt={program.alt}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent group-hover:from-black/80 transition-colors duration-300" />
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <h3 className="font-display text-2xl md:text-3xl tracking-wider text-white">
+                <div className="relative aspect-[16/9]">
+                  <Image
+                    src={program.image}
+                    alt={program.alt}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent group-hover:from-black/90 transition-colors duration-300" />
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                  <h3 className="font-display text-2xl md:text-3xl tracking-wider text-white mb-2">
                     {program.title.toUpperCase()}
                   </h3>
+                  <p className="text-white/60 text-sm leading-relaxed max-w-lg">
+                    {program.desc}
+                  </p>
                 </div>
               </div>
             ))}
@@ -144,8 +161,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Mission Statement — Full width */}
-      <section className="py-20 md:py-28 bg-white">
+      {/* Mission Statement */}
+      <section className="py-20 md:py-28 bg-off-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-text-gray text-sm font-semibold uppercase tracking-[0.2em] mb-6">
             Our Mission
@@ -159,14 +176,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials — G6 style */}
-      <section className="py-20 md:py-28 bg-off-white">
+      {/* Testimonials */}
+      <section className="py-20 md:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <p className="text-text-gray text-sm font-semibold uppercase tracking-[0.2em] mb-4">
               Champions Speak
             </p>
-            <h2 className="font-display text-4xl md:text-5xl tracking-wider text-text-dark">
+            <h2 className="font-display text-3xl md:text-4xl tracking-wider text-text-dark">
               STORIES OF TRIUMPH & GROWTH
             </h2>
           </div>
@@ -174,7 +191,7 @@ export default function Home() {
             {testimonials.map((t) => (
               <div
                 key={t.name}
-                className="bg-white p-8 md:p-10 border border-mid-gray/50"
+                className="bg-off-white p-8 md:p-10 border border-mid-gray/50"
               >
                 <p className="text-text-gray leading-relaxed mb-8 text-base">
                   &ldquo;{t.quote}&rdquo;
@@ -198,17 +215,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Giving Tuesday / Donate CTA */}
+      {/* Donate CTA */}
       <section className="py-20 md:py-28 bg-charcoal text-white noise-overlay">
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-white/40 text-sm font-semibold uppercase tracking-[0.2em] mb-4">
-            Support Us
+            Level The Playing Field
           </p>
           <h2 className="font-display text-4xl md:text-6xl tracking-wider mb-6">
-            EMPOWER A YOUNG ATHLETE
+            EVERY DOLLAR GOES TOWARD THE ATHLETES WHO HAVE THE DRIVE BUT NOT THE ACCESS
           </h2>
           <p className="text-white/60 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-            Your support helps provide mentorship, athletic training, and life-changing opportunities for youth. Every dollar makes a difference in a young athlete&apos;s journey.
+            Your contribution directly funds these programs. It helps a young athlete attend a camp that changes their trajectory, earn a scholarship that keeps them in their sport, or find a mentor who shows them what is possible.
           </p>
           <StripeButton />
         </div>
@@ -222,7 +239,7 @@ export default function Home() {
               Location
             </p>
             <h2 className="font-display text-3xl md:text-4xl tracking-wider text-text-dark">
-              SACRAMENTO, CA
+              SACRAMENTO, CALIFORNIA
             </h2>
           </div>
           <div className="overflow-hidden h-80">
@@ -240,21 +257,29 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Final CTA — G6 "Claim Free Eval" style */}
+      {/* Final CTA */}
       <section className="py-20 md:py-28 bg-off-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-display text-4xl md:text-6xl tracking-wider text-text-dark mb-6">
-            INSPIRE GREATNESS VIA SPORTS
+            WE WOULD BE HONORED TO PARTNER WITH YOU
           </h2>
           <p className="text-text-gray text-lg mb-10 leading-relaxed">
-            Unleash potential, ignite passion: Join our community where youth thrive through the power of sports, mentorship, and personal growth.
+            On behalf of every athlete you help reach new heights — thank you.
           </p>
-          <a
-            href="/programs"
-            className="inline-block bg-charcoal hover:bg-charcoal/90 text-white font-bold text-sm uppercase tracking-wider px-10 py-4 transition-colors"
-          >
-            Our Programs &rarr;
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="/donate"
+              className="bg-charcoal hover:bg-charcoal/90 text-white font-bold text-sm uppercase tracking-wider px-10 py-4 transition-colors"
+            >
+              Support Our Mission &rarr;
+            </a>
+            <a
+              href="/contact"
+              className="border-2 border-charcoal text-charcoal font-bold text-sm uppercase tracking-wider px-10 py-4 hover:bg-charcoal hover:text-white transition-colors"
+            >
+              Get In Touch
+            </a>
+          </div>
         </div>
       </section>
     </div>

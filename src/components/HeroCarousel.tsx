@@ -67,7 +67,7 @@ export default function HeroCarousel() {
           THROUGH SPORTS
         </h1>
         <p className="text-white/70 text-base md:text-lg max-w-2xl mb-10 leading-relaxed">
-          Dedicated to the mental, physical, and social development of young adults through athletics and mentorship.
+          Empowering youth to reach their fullest potential through sport and mentorship. The athletes with the most promise often have the least access. We exist to close that gap.
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
           <a

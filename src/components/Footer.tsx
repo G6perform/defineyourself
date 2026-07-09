@@ -16,7 +16,7 @@ export default function Footer() {
               className="h-10 w-auto brightness-200 mb-4"
             />
             <p className="text-white/50 text-sm leading-relaxed">
-              Empowering youth to achieve their fullest potential through sports and mentorship.
+              Empowering youth to reach their fullest potential through sport and mentorship.
             </p>
           </div>
 
@@ -49,7 +49,8 @@ export default function Footer() {
               >
                 defineyourself916@gmail.com
               </a>
-              <p className="text-sm text-white/50">Sacramento, CA</p>
+              <a href="tel:+15306016625" className="text-sm text-white/50 hover:text-white transition-colors">(530) 601-6625</a>
+              <p className="text-sm text-white/50">Sacramento, California</p>
               <div className="flex gap-4 mt-2">
                 <a
                   href="https://www.instagram.com/define_yourself_inc/"
@@ -68,7 +69,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-white/10 text-center text-sm text-white/30">
-          &copy; {new Date().getFullYear()} Define Yourself Inc. All rights reserved. 501(c)(3) Non-Profit.
+          &copy; {new Date().getFullYear()} Define Yourself Inc. All rights reserved. &middot; 501(c)(3) Non-Profit &middot; EIN 88-3419481
         </div>
       </div>
     </footer>
