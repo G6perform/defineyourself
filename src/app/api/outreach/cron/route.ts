@@ -158,6 +158,21 @@ export async function GET(request: Request) {
     `,
   });
 
+  // Step 6: If it's Monday, also send weekly report
+  const now = new Date();
+  const dayOfWeek = new Intl.DateTimeFormat("en-US", { weekday: "long", timeZone: "America/Los_Angeles" }).format(now);
+
+  if (dayOfWeek === "Monday") {
+    try {
+      await fetch(`${baseUrl}/api/outreach/weekly-report`, {
+        headers: { authorization: `Bearer ${process.env.CRON_SECRET}` },
+      });
+      results.weekly_report = "sent";
+    } catch (error) {
+      results.weekly_report = { error: String(error) };
+    }
+  }
+
   return NextResponse.json({
     message: "Daily outreach cron completed",
     timestamp: new Date().toISOString(),
