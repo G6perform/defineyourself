@@ -116,7 +116,31 @@ export async function GET(request: Request) {
 
   results.dedup = { removed: dupsRemoved };
 
-  // Step 3: Get the list of businesses ready to be emailed (NO auto-send)
+  // Step 3: Send outreach emails
+  let totalEmailed = 0;
+  try {
+    const sendRes = await fetch(`${baseUrl}/api/outreach/send`, {
+      method: "POST",
+      headers: { "x-admin-password": adminPassword },
+    });
+    const data = await sendRes.json();
+    results.outreach = data;
+    totalEmailed = data.sent || 0;
+  } catch (error) {
+    results.outreach = { error: String(error) };
+  }
+
+  // Step 4: Get the list of businesses that were just emailed
+  const todayStart = new Date();
+  todayStart.setHours(0, 0, 0, 0);
+
+  const { data: todaysEmails } = await supabaseAdmin
+    .from("outreach_emails")
+    .select("to_email, subject, business_id, businesses(name, type, lead_source)")
+    .gte("sent_at", todayStart.toISOString())
+    .order("sent_at", { ascending: false });
+
+  // Also get remaining discovered for next batch preview
   const { data: readyToEmail } = await supabaseAdmin
     .from("businesses")
     .select("name, type, email, lead_source, notes")
@@ -125,7 +149,7 @@ export async function GET(request: Request) {
     .order("created_at", { ascending: false })
     .limit(30);
 
-  // Step 4: Get pipeline stats
+  // Step 5: Get pipeline stats
   const { data: allBusinesses } = await supabaseAdmin
     .from("businesses")
     .select("status, donated_amount");
@@ -155,23 +179,24 @@ export async function GET(request: Request) {
 
   const goalProgress = ((stats.total_raised / 100000) * 100).toFixed(1);
 
-  // Step 5: Send REVIEW email (not a post-send report)
+  // Step 6: Send daily report email
   const resend = new Resend(process.env.RESEND_API_KEY);
 
-  const reviewRows = (readyToEmail || [])
+  const emailedRows = (todaysEmails || [])
     .map(
-      (b) =>
-        `<tr>
-          <td style="padding:8px 12px;border-bottom:1px solid #eee;">${b.name}</td>
-          <td style="padding:8px 12px;border-bottom:1px solid #eee;">${b.type || "—"}</td>
-          <td style="padding:8px 12px;border-bottom:1px solid #eee;">${b.email}</td>
-          <td style="padding:8px 12px;border-bottom:1px solid #eee;">
-            <span style="background:${b.lead_source === "apollo" ? "#f3e8ff;color:#6b21a8" : "#dbeafe;color:#1e40af"};padding:2px 6px;font-size:11px;font-weight:bold;text-transform:uppercase;">
-              ${b.lead_source || "manual"}
-            </span>
+      (e: Record<string, unknown>) => {
+        const biz = e.businesses as Record<string, string> | null;
+        const source = biz?.lead_source || "manual";
+        const color = source === "apollo" ? "#f3e8ff;color:#6b21a8" : "#dbeafe;color:#1e40af";
+        return `<tr>
+          <td style="padding:6px 12px;border-bottom:1px solid #eee;">${biz?.name || "Unknown"}</td>
+          <td style="padding:6px 12px;border-bottom:1px solid #eee;">${biz?.type || "—"}</td>
+          <td style="padding:6px 12px;border-bottom:1px solid #eee;">${e.to_email}</td>
+          <td style="padding:6px 12px;border-bottom:1px solid #eee;">
+            <span style="background:${color};padding:2px 6px;font-size:11px;font-weight:bold;text-transform:uppercase;">${source}</span>
           </td>
-          <td style="padding:8px 12px;border-bottom:1px solid #eee;font-size:12px;color:#666;">${b.notes || "—"}</td>
-        </tr>`
+        </tr>`;
+      }
     )
     .join("");
 
@@ -179,25 +204,18 @@ export async function GET(request: Request) {
     from: "Nick Pohl <nick@defineyourself916.org>",
     to: "defineyourself916@gmail.com",
     replyTo: "defineyourself916@gmail.com",
-    subject: `Review Before Sending — ${(readyToEmail || []).length} businesses ready to email`,
+    subject: `Outreach Report — ${totalEmailed} emails sent, ${totalDiscovered} discovered`,
     html: `
       <div style="font-family:Arial,sans-serif;max-width:700px;margin:0 auto;">
-        <h1 style="font-size:22px;color:#111;">Outreach Review</h1>
+        <h1 style="font-size:22px;color:#111;">Daily Outreach Report</h1>
         <p style="color:#666;font-size:14px;">${new Date().toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric", timeZone: "America/Los_Angeles" })}</p>
 
-        <div style="background:#fffbeb;border:1px solid #f59e0b;padding:16px;margin:20px 0;">
-          <p style="margin:0;font-size:14px;color:#92400e;">
-            <strong>Action Required:</strong> Review the list below. Remove anyone you know or don't want contacted from the
-            <a href="https://defineyourself916.org/admin/outreach" style="color:#111;font-weight:bold;">dashboard</a>,
-            then click <strong>"Send Outreach"</strong> when ready.
-          </p>
-        </div>
-
         <div style="background:#f8f8f8;padding:20px;margin:20px 0;">
-          <h2 style="font-size:16px;color:#111;margin-top:0;">Today's Discovery</h2>
+          <h2 style="font-size:16px;color:#111;margin-top:0;">Today's Activity</h2>
           <p style="margin:4px 0;"><strong>${totalDiscovered}</strong> new businesses discovered</p>
           <p style="margin:4px 0;"><strong>${dupsRemoved}</strong> duplicates removed</p>
-          <p style="margin:4px 0;"><strong>${(readyToEmail || []).length}</strong> ready to email (next batch)</p>
+          <p style="margin:4px 0;"><strong>${totalEmailed}</strong> outreach emails sent</p>
+          <p style="margin:4px 0;"><strong>${(readyToEmail || []).length}</strong> in queue for tomorrow</p>
         </div>
 
         <div style="background:#111;color:#fff;padding:20px;margin:20px 0;text-align:center;">
@@ -206,27 +224,18 @@ export async function GET(request: Request) {
           <p style="margin:0;font-size:14px;color:#999;">${goalProgress}% of goal</p>
         </div>
 
-        <h2 style="font-size:16px;color:#111;">Businesses About To Be Emailed</h2>
-        <p style="color:#666;font-size:13px;margin-bottom:12px;">Review this list. Remove anyone from the <a href="https://defineyourself916.org/admin/outreach" style="color:#111;">dashboard</a> before clicking Send.</p>
-
-        ${reviewRows ? `
+        ${emailedRows ? `
+        <h2 style="font-size:16px;color:#111;">Businesses Emailed Today</h2>
         <table style="width:100%;font-size:13px;border-collapse:collapse;">
           <tr style="background:#f0f0f0;">
-            <th style="padding:8px 12px;text-align:left;">Business</th>
-            <th style="padding:8px 12px;text-align:left;">Type</th>
-            <th style="padding:8px 12px;text-align:left;">Email</th>
-            <th style="padding:8px 12px;text-align:left;">Source</th>
-            <th style="padding:8px 12px;text-align:left;">Contact</th>
+            <th style="padding:6px 12px;text-align:left;">Business</th>
+            <th style="padding:6px 12px;text-align:left;">Type</th>
+            <th style="padding:6px 12px;text-align:left;">Email</th>
+            <th style="padding:6px 12px;text-align:left;">Source</th>
           </tr>
-          ${reviewRows}
+          ${emailedRows}
         </table>
-        ` : `<p style="color:#666;">No businesses with emails ready to send.</p>`}
-
-        <div style="margin:24px 0;text-align:center;">
-          <a href="https://defineyourself916.org/admin/outreach" style="display:inline-block;background:#111;color:#fff;padding:14px 32px;text-decoration:none;font-weight:bold;font-size:14px;text-transform:uppercase;letter-spacing:1px;">
-            Review & Send Outreach →
-          </a>
-        </div>
+        ` : `<p style="color:#666;">No emails sent today.</p>`}
 
         <div style="background:#f8f8f8;padding:20px;margin:20px 0;">
           <h2 style="font-size:16px;color:#111;margin-top:0;">Pipeline Overview</h2>
@@ -240,11 +249,15 @@ export async function GET(request: Request) {
             <tr><td>Declined</td><td style="text-align:right;"><strong>${stats.declined}</strong></td></tr>
           </table>
         </div>
+
+        <p style="margin-top:20px;font-size:12px;color:#999;">
+          <a href="https://defineyourself916.org/admin/outreach" style="color:#111;">View full dashboard</a>
+        </p>
       </div>
     `,
   });
 
-  // Step 6: If it's Monday, also send weekly report
+  // Step 7: If it's Monday, also send weekly report
   const now = new Date();
   const dayOfWeek = new Intl.DateTimeFormat("en-US", { weekday: "long", timeZone: "America/Los_Angeles" }).format(now);
 
@@ -260,11 +273,11 @@ export async function GET(request: Request) {
   }
 
   return NextResponse.json({
-    message: "Daily discovery + review email completed (outreach NOT auto-sent)",
+    message: "Daily outreach cron completed",
     timestamp: new Date().toISOString(),
     discovered: totalDiscovered,
     dupsRemoved,
-    readyToEmail: (readyToEmail || []).length,
+    emailed: totalEmailed,
     stats,
   });
 }
