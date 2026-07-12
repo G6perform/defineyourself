@@ -291,9 +291,12 @@ export default function OutreachAdmin() {
                     </td>
                     <td className="px-4 py-3 text-xs text-text-gray whitespace-nowrap">
                       {biz.contacted_at
-                        ? new Date(biz.contacted_at).toLocaleDateString("en-US", {
+                        ? new Date(biz.contacted_at).toLocaleString("en-US", {
                             month: "short",
                             day: "numeric",
+                            hour: "numeric",
+                            minute: "2-digit",
+                            hour12: true,
                             timeZone: "America/Los_Angeles",
                           })
                         : "—"}
