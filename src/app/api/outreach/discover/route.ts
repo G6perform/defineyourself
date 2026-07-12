@@ -67,14 +67,40 @@ function extractEmailFromWebsite(website: string): Promise<string | null> {
       if (!matches) return null;
       // Filter out common non-business emails
       const filtered = matches.filter(
-        (e) =>
-          !e.includes("example.com") &&
-          !e.includes("sentry.io") &&
-          !e.includes("schema.org") &&
-          !e.includes(".png") &&
-          !e.includes(".jpg") &&
-          !e.includes("wixpress") &&
-          !e.includes("googleapis")
+        (e) => {
+          const lower = e.toLowerCase();
+          return (
+            !lower.includes("example.com") &&
+            !lower.includes("example@") &&
+            !lower.includes("user@domain") &&
+            !lower.includes("name@domain") &&
+            !lower.includes("your@email") &&
+            !lower.includes("email@email") &&
+            !lower.includes("test@") &&
+            !lower.includes("noreply") &&
+            !lower.includes("no-reply") &&
+            !lower.includes("donotreply") &&
+            !lower.includes("unsubscribe") &&
+            !lower.includes("career@") &&
+            !lower.includes("careers@") &&
+            !lower.includes("jobs@") &&
+            !lower.includes("recruiting@") &&
+            !lower.includes("sentry.io") &&
+            !lower.includes("schema.org") &&
+            !lower.includes(".png") &&
+            !lower.includes(".jpg") &&
+            !lower.includes(".svg") &&
+            !lower.includes("wixpress") &&
+            !lower.includes("googleapis") &&
+            !lower.includes("squarespace") &&
+            !lower.includes("wordpress") &&
+            !lower.includes("@sentry") &&
+            !lower.includes("@wix") &&
+            !lower.includes("mysite.com") &&
+            !lower.endsWith(".js") &&
+            !lower.endsWith(".css")
+          );
+        }
       );
       return filtered[0] || null;
     })
