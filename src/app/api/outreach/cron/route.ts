@@ -116,18 +116,22 @@ export async function GET(request: Request) {
 
   results.dedup = { removed: dupsRemoved };
 
-  // Step 3: Send outreach emails
+  // Step 3: Send outreach emails (6 rounds of 5 to stay within function timeout)
   let totalEmailed = 0;
-  try {
-    const sendRes = await fetch(`${baseUrl}/api/outreach/send`, {
-      method: "POST",
-      headers: { "x-admin-password": adminPassword },
-    });
-    const data = await sendRes.json();
-    results.outreach = data;
-    totalEmailed = data.sent || 0;
-  } catch (error) {
-    results.outreach = { error: String(error) };
+  for (let i = 0; i < 6; i++) {
+    try {
+      const sendRes = await fetch(`${baseUrl}/api/outreach/send`, {
+        method: "POST",
+        headers: { "x-admin-password": adminPassword },
+      });
+      const data = await sendRes.json();
+      results[`send_${i + 1}`] = data;
+      totalEmailed += data.sent || 0;
+      if (data.sent === 0) break; // No more to send
+    } catch (error) {
+      results[`send_${i + 1}`] = { error: String(error) };
+      break;
+    }
   }
 
   // Step 4: Get the list of businesses that were just emailed

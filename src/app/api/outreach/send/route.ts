@@ -73,7 +73,7 @@ export async function POST(request: Request) {
     .select("*")
     .eq("status", "discovered")
     .not("email", "is", null)
-    .limit(remaining);
+    .limit(Math.min(remaining, 5));
 
   if (!businesses || businesses.length === 0) {
     return NextResponse.json({
