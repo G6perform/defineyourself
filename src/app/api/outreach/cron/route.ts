@@ -38,6 +38,22 @@ export async function GET(request: Request) {
     }
   }
 
+  // Step 1b: Discover via Apollo (2 rounds)
+  for (let i = 0; i < 2; i++) {
+    try {
+      const apolloRes = await fetch(`${baseUrl}/api/outreach/discover-apollo`, {
+        method: "POST",
+        headers: { "x-admin-password": adminPassword },
+      });
+      const data = await apolloRes.json();
+      results[`apollo_${i + 1}`] = data;
+      totalDiscovered += data.added || 0;
+      if (data.location) businessTypes.push(`apollo: ${data.location}`);
+    } catch (error) {
+      results[`apollo_${i + 1}`] = { error: String(error) };
+    }
+  }
+
   // Step 2: Send outreach emails
   try {
     const sendRes = await fetch(`${baseUrl}/api/outreach/send`, {

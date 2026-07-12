@@ -96,10 +96,16 @@ export default function OutreachAdmin() {
 
   async function runDiscovery() {
     setActionLoading("discovery");
-    await fetch("/api/outreach/discover", {
-      method: "POST",
-      headers: { "x-admin-password": password },
-    });
+    await Promise.all([
+      fetch("/api/outreach/discover", {
+        method: "POST",
+        headers: { "x-admin-password": password },
+      }),
+      fetch("/api/outreach/discover-apollo", {
+        method: "POST",
+        headers: { "x-admin-password": password },
+      }),
+    ]);
     await fetchData();
     setActionLoading(null);
   }
