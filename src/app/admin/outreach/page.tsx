@@ -238,7 +238,7 @@ export default function OutreachAdmin() {
             <table className="w-full">
               <thead>
                 <tr className="border-b border-mid-gray/30">
-                  {["Business", "Type", "Email", "Phone", "Status", "Source", "Actions"].map(
+                  {["Business", "Type", "Email", "Phone", "Status", "Source", "Contacted", "Actions"].map(
                     (h) => (
                       <th
                         key={h}
@@ -288,6 +288,15 @@ export default function OutreachAdmin() {
                       }`}>
                         {biz.lead_source || "manual"}
                       </span>
+                    </td>
+                    <td className="px-4 py-3 text-xs text-text-gray whitespace-nowrap">
+                      {biz.contacted_at
+                        ? new Date(biz.contacted_at).toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            timeZone: "America/Los_Angeles",
+                          })
+                        : "—"}
                     </td>
                     <td className="px-4 py-3">
                       <select
