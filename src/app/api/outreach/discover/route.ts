@@ -147,6 +147,34 @@ export async function POST(request: Request) {
 
     if (existing) continue;
 
+    // Skip national chains
+    const nameLower = (place.name || "").toLowerCase();
+    const CHAINS = [
+      "walmart", "target", "costco", "home depot", "lowe's", "lowes",
+      "starbucks", "mcdonald", "burger king", "wendy's", "wendys", "taco bell",
+      "chick-fil-a", "chickfila", "subway", "panda express", "chipotle",
+      "in-n-out", "jack in the box", "carl's jr", "del taco", "sonic drive",
+      "applebee", "olive garden", "red lobster", "outback steakhouse", "ihop",
+      "denny's", "dennys", "chili's", "chilis", "buffalo wild wings",
+      "u.s. bank", "us bank", "chase bank", "bank of america", "wells fargo",
+      "citibank", "td bank", "capital one", "pnc bank",
+      "walgreens", "cvs pharmacy", "rite aid",
+      "urban plates", "panera", "wingstop", "domino's", "dominos", "pizza hut",
+      "papa john", "little caesars",
+      "autozone", "o'reilly auto", "oreilly auto", "advance auto", "napa auto",
+      "jiffy lube", "midas", "firestone", "goodyear", "les schwab", "pep boys",
+      "verizon", "at&t", "t-mobile", "tmobile", "sprint",
+      "fedex", "ups store",
+      "best buy", "gamestop", "petco", "petsmart",
+      "planet fitness", "24 hour fitness", "anytime fitness", "la fitness",
+      "marriott", "hilton", "holiday inn", "hyatt", "sheraton",
+      "safeway", "raley's", "raleys", "trader joe", "whole foods", "winco",
+      "kevin jewelers", "zales", "kay jewelers", "jared",
+      "h&r block", "jackson hewitt", "liberty tax",
+      "state farm", "allstate", "geico", "progressive", "farmers insurance",
+    ];
+    if (CHAINS.some((chain) => nameLower.includes(chain))) continue;
+
     // Get details
     const details = await getPlaceDetails(place.place_id, apiKey);
     if (!details || details.business_status !== "OPERATIONAL") continue;
