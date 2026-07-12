@@ -19,10 +19,9 @@ export async function GET(request: Request) {
 
   const results: Record<string, unknown> = {};
   let totalDiscovered = 0;
-  let totalEmailed = 0;
   const businessTypes: string[] = [];
 
-  // Step 1: Discover new businesses (3 rounds for variety)
+  // Step 1a: Discover via Google Places (3 rounds)
   for (let i = 0; i < 3; i++) {
     try {
       const discoverRes = await fetch(`${baseUrl}/api/outreach/discover`, {
@@ -54,21 +53,80 @@ export async function GET(request: Request) {
     }
   }
 
-  // Step 2: Send outreach emails
-  try {
-    const sendRes = await fetch(`${baseUrl}/api/outreach/send`, {
-      method: "POST",
-      headers: { "x-admin-password": adminPassword },
-    });
-    const data = await sendRes.json();
-    results.outreach = data;
-    totalEmailed = data.sent || 0;
-  } catch (error) {
-    results.outreach = { error: String(error) };
+  // Step 2: Deduplicate — remove businesses with duplicate emails
+  const { data: allDiscovered } = await supabaseAdmin
+    .from("businesses")
+    .select("id, email, name")
+    .eq("status", "discovered")
+    .not("email", "is", null)
+    .order("created_at", { ascending: true });
+
+  let dupsRemoved = 0;
+  if (allDiscovered) {
+    const seenEmails = new Set<string>();
+    const seenNames = new Set<string>();
+    for (const biz of allDiscovered) {
+      const emailLower = biz.email?.toLowerCase();
+      const nameLower = biz.name?.toLowerCase();
+
+      if (
+        (emailLower && seenEmails.has(emailLower)) ||
+        (nameLower && seenNames.has(nameLower))
+      ) {
+        await supabaseAdmin.from("businesses").delete().eq("id", biz.id);
+        dupsRemoved++;
+      } else {
+        if (emailLower) seenEmails.add(emailLower);
+        if (nameLower) seenNames.add(nameLower);
+      }
+    }
   }
 
-  // Step 3: Get pipeline stats
-  const { data: businesses } = await supabaseAdmin
+  // Also check discovered against already contacted/emailed businesses
+  const { data: contactedEmails } = await supabaseAdmin
+    .from("businesses")
+    .select("email, name")
+    .neq("status", "discovered")
+    .not("email", "is", null);
+
+  const contactedEmailSet = new Set(
+    (contactedEmails || []).map((b) => b.email?.toLowerCase())
+  );
+  const contactedNameSet = new Set(
+    (contactedEmails || []).map((b) => b.name?.toLowerCase())
+  );
+
+  const { data: discoveredAfterDedup } = await supabaseAdmin
+    .from("businesses")
+    .select("id, email, name")
+    .eq("status", "discovered")
+    .not("email", "is", null);
+
+  if (discoveredAfterDedup) {
+    for (const biz of discoveredAfterDedup) {
+      if (
+        contactedEmailSet.has(biz.email?.toLowerCase()) ||
+        contactedNameSet.has(biz.name?.toLowerCase())
+      ) {
+        await supabaseAdmin.from("businesses").delete().eq("id", biz.id);
+        dupsRemoved++;
+      }
+    }
+  }
+
+  results.dedup = { removed: dupsRemoved };
+
+  // Step 3: Get the list of businesses ready to be emailed (NO auto-send)
+  const { data: readyToEmail } = await supabaseAdmin
+    .from("businesses")
+    .select("name, type, email, lead_source, notes")
+    .eq("status", "discovered")
+    .not("email", "is", null)
+    .order("created_at", { ascending: false })
+    .limit(30);
+
+  // Step 4: Get pipeline stats
+  const { data: allBusinesses } = await supabaseAdmin
     .from("businesses")
     .select("status, donated_amount");
 
@@ -83,9 +141,9 @@ export async function GET(request: Request) {
     total_raised: 0,
   };
 
-  if (businesses) {
-    stats.total = businesses.length;
-    for (const biz of businesses) {
+  if (allBusinesses) {
+    stats.total = allBusinesses.length;
+    for (const biz of allBusinesses) {
       if (biz.status in stats) {
         stats[biz.status as keyof typeof stats]++;
       }
@@ -95,45 +153,79 @@ export async function GET(request: Request) {
     }
   }
 
-  // Step 4: Get today's emailed businesses for the report
-  const todayStart = new Date();
-  todayStart.setHours(0, 0, 0, 0);
+  const goalProgress = ((stats.total_raised / 100000) * 100).toFixed(1);
 
-  const { data: todaysEmails } = await supabaseAdmin
-    .from("outreach_emails")
-    .select("to_email, subject, business_id, businesses(name, type)")
-    .gte("sent_at", todayStart.toISOString())
-    .order("sent_at", { ascending: false });
-
-  // Step 5: Send summary email to Nick
+  // Step 5: Send REVIEW email (not a post-send report)
   const resend = new Resend(process.env.RESEND_API_KEY);
 
-  const emailList = (todaysEmails || [])
+  const reviewRows = (readyToEmail || [])
     .map(
-      (e: Record<string, unknown>) =>
+      (b) =>
         `<tr>
-          <td style="padding:6px 12px;border-bottom:1px solid #eee;">${(e.businesses as Record<string, string>)?.name || "Unknown"}</td>
-          <td style="padding:6px 12px;border-bottom:1px solid #eee;">${(e.businesses as Record<string, string>)?.type || "—"}</td>
-          <td style="padding:6px 12px;border-bottom:1px solid #eee;">${e.to_email}</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #eee;">${b.name}</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #eee;">${b.type || "—"}</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #eee;">${b.email}</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #eee;">
+            <span style="background:${b.lead_source === "apollo" ? "#f3e8ff;color:#6b21a8" : "#dbeafe;color:#1e40af"};padding:2px 6px;font-size:11px;font-weight:bold;text-transform:uppercase;">
+              ${b.lead_source || "manual"}
+            </span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #eee;font-size:12px;color:#666;">${b.notes || "—"}</td>
         </tr>`
     )
     .join("");
 
-  const goalProgress = ((stats.total_raised / 100000) * 100).toFixed(1);
-
   await resend.emails.send({
-    from: "Define Yourself Outreach <nick@defineyourself916.org>",
+    from: "Nick Pohl <nick@defineyourself916.org>",
     to: "defineyourself916@gmail.com",
-    subject: `Outreach Report — ${totalEmailed} emails sent, ${totalDiscovered} businesses discovered`,
+    replyTo: "defineyourself916@gmail.com",
+    subject: `Review Before Sending — ${(readyToEmail || []).length} businesses ready to email`,
     html: `
-      <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">
-        <h1 style="font-size:22px;color:#111;">Daily Outreach Report</h1>
+      <div style="font-family:Arial,sans-serif;max-width:700px;margin:0 auto;">
+        <h1 style="font-size:22px;color:#111;">Outreach Review</h1>
         <p style="color:#666;font-size:14px;">${new Date().toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric", timeZone: "America/Los_Angeles" })}</p>
 
+        <div style="background:#fffbeb;border:1px solid #f59e0b;padding:16px;margin:20px 0;">
+          <p style="margin:0;font-size:14px;color:#92400e;">
+            <strong>Action Required:</strong> Review the list below. Remove anyone you know or don't want contacted from the
+            <a href="https://defineyourself916.org/admin/outreach" style="color:#111;font-weight:bold;">dashboard</a>,
+            then click <strong>"Send Outreach"</strong> when ready.
+          </p>
+        </div>
+
         <div style="background:#f8f8f8;padding:20px;margin:20px 0;">
-          <h2 style="font-size:16px;color:#111;margin-top:0;">Today's Activity</h2>
-          <p style="margin:4px 0;"><strong>${totalDiscovered}</strong> new businesses discovered (${businessTypes.join(", ") || "none"})</p>
-          <p style="margin:4px 0;"><strong>${totalEmailed}</strong> outreach emails sent</p>
+          <h2 style="font-size:16px;color:#111;margin-top:0;">Today's Discovery</h2>
+          <p style="margin:4px 0;"><strong>${totalDiscovered}</strong> new businesses discovered</p>
+          <p style="margin:4px 0;"><strong>${dupsRemoved}</strong> duplicates removed</p>
+          <p style="margin:4px 0;"><strong>${(readyToEmail || []).length}</strong> ready to email (next batch)</p>
+        </div>
+
+        <div style="background:#111;color:#fff;padding:20px;margin:20px 0;text-align:center;">
+          <p style="margin:0;font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#999;">$100K Goal</p>
+          <p style="margin:8px 0;font-size:32px;font-weight:bold;">$${stats.total_raised.toLocaleString()}</p>
+          <p style="margin:0;font-size:14px;color:#999;">${goalProgress}% of goal</p>
+        </div>
+
+        <h2 style="font-size:16px;color:#111;">Businesses About To Be Emailed</h2>
+        <p style="color:#666;font-size:13px;margin-bottom:12px;">Review this list. Remove anyone from the <a href="https://defineyourself916.org/admin/outreach" style="color:#111;">dashboard</a> before clicking Send.</p>
+
+        ${reviewRows ? `
+        <table style="width:100%;font-size:13px;border-collapse:collapse;">
+          <tr style="background:#f0f0f0;">
+            <th style="padding:8px 12px;text-align:left;">Business</th>
+            <th style="padding:8px 12px;text-align:left;">Type</th>
+            <th style="padding:8px 12px;text-align:left;">Email</th>
+            <th style="padding:8px 12px;text-align:left;">Source</th>
+            <th style="padding:8px 12px;text-align:left;">Contact</th>
+          </tr>
+          ${reviewRows}
+        </table>
+        ` : `<p style="color:#666;">No businesses with emails ready to send.</p>`}
+
+        <div style="margin:24px 0;text-align:center;">
+          <a href="https://defineyourself916.org/admin/outreach" style="display:inline-block;background:#111;color:#fff;padding:14px 32px;text-decoration:none;font-weight:bold;font-size:14px;text-transform:uppercase;letter-spacing:1px;">
+            Review & Send Outreach →
+          </a>
         </div>
 
         <div style="background:#f8f8f8;padding:20px;margin:20px 0;">
@@ -148,28 +240,6 @@ export async function GET(request: Request) {
             <tr><td>Declined</td><td style="text-align:right;"><strong>${stats.declined}</strong></td></tr>
           </table>
         </div>
-
-        <div style="background:#111;color:#fff;padding:20px;margin:20px 0;text-align:center;">
-          <p style="margin:0;font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#999;">$100K Goal</p>
-          <p style="margin:8px 0;font-size:32px;font-weight:bold;">$${stats.total_raised.toLocaleString()}</p>
-          <p style="margin:0;font-size:14px;color:#999;">${goalProgress}% of goal</p>
-        </div>
-
-        ${emailList ? `
-        <h2 style="font-size:16px;color:#111;">Businesses Emailed Today</h2>
-        <table style="width:100%;font-size:13px;border-collapse:collapse;">
-          <tr style="background:#f0f0f0;">
-            <th style="padding:6px 12px;text-align:left;">Business</th>
-            <th style="padding:6px 12px;text-align:left;">Type</th>
-            <th style="padding:6px 12px;text-align:left;">Email</th>
-          </tr>
-          ${emailList}
-        </table>
-        ` : ""}
-
-        <p style="margin-top:30px;font-size:12px;color:#999;">
-          <a href="https://defineyourself916.org/admin/outreach" style="color:#111;">View full dashboard</a>
-        </p>
       </div>
     `,
   });
@@ -190,10 +260,11 @@ export async function GET(request: Request) {
   }
 
   return NextResponse.json({
-    message: "Daily outreach cron completed",
+    message: "Daily discovery + review email completed (outreach NOT auto-sent)",
     timestamp: new Date().toISOString(),
     discovered: totalDiscovered,
-    emailed: totalEmailed,
+    dupsRemoved,
+    readyToEmail: (readyToEmail || []).length,
     stats,
   });
 }
