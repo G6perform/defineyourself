@@ -15,6 +15,7 @@ type Business = {
   last_activity_at: string | null;
   donated_amount: number | null;
   notes: string | null;
+  lead_source: string | null;
 };
 
 type Stats = {
@@ -231,7 +232,7 @@ export default function OutreachAdmin() {
             <table className="w-full">
               <thead>
                 <tr className="border-b border-mid-gray/30">
-                  {["Business", "Type", "Email", "Phone", "Status", "Rating", "Actions"].map(
+                  {["Business", "Type", "Email", "Phone", "Status", "Source", "Actions"].map(
                     (h) => (
                       <th
                         key={h}
@@ -273,8 +274,14 @@ export default function OutreachAdmin() {
                         {STATUS_LABELS[biz.status] || biz.status}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-sm text-text-gray">
-                      {biz.google_rating ? `${biz.google_rating} ★` : "—"}
+                    <td className="px-4 py-3">
+                      <span className={`text-xs font-bold uppercase tracking-wider px-2 py-1 ${
+                        biz.lead_source === "apollo" ? "bg-purple-100 text-purple-800" :
+                        biz.lead_source === "google_places" ? "bg-blue-100 text-blue-800" :
+                        "bg-gray-100 text-gray-600"
+                      }`}>
+                        {biz.lead_source || "manual"}
+                      </span>
                     </td>
                     <td className="px-4 py-3">
                       <select
