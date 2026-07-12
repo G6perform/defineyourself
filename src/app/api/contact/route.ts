@@ -19,7 +19,7 @@ export async function POST(request: Request) {
 
   try {
     await resend.emails.send({
-      from: "Define Yourself <nick@g6-performance.com>",
+      from: "Define Yourself <nick@defineyourself916.org>",
       to: "defineyourself916@gmail.com",
       replyTo: email,
       subject: `New Contact Form: ${name}`,
@@ -30,7 +30,7 @@ export async function POST(request: Request) {
         <p><strong>Message:</strong></p>
         <p>${message.replace(/\n/g, "<br>")}</p>
         <hr>
-        <p style="color: #999; font-size: 12px;">Sent from defineyourself.vercel.app contact form</p>
+        <p style="color: #999; font-size: 12px;">Sent from defineyourself916.org contact form</p>
       `,
     });
 
