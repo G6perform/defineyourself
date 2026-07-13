@@ -137,7 +137,7 @@ export async function GET(request: Request) {
     `,
   });
 
-  // Step 5: Weekly report on Mondays
+  // Step 5: Weekly report + grant discovery on Mondays
   const dayOfWeek = new Intl.DateTimeFormat("en-US", { weekday: "long", timeZone: "America/Los_Angeles" }).format(new Date());
   if (dayOfWeek === "Monday") {
     try {
@@ -147,6 +147,14 @@ export async function GET(request: Request) {
       results.weekly_report = "sent";
     } catch (error) {
       results.weekly_report = { error: String(error) };
+    }
+    try {
+      await fetch(`${baseUrl}/api/grants/discover`, {
+        headers: { authorization: `Bearer ${process.env.CRON_SECRET}` },
+      });
+      results.grant_discovery = "sent";
+    } catch (error) {
+      results.grant_discovery = { error: String(error) };
     }
   }
 
