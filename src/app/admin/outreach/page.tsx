@@ -168,6 +168,12 @@ export default function OutreachAdmin() {
             </p>
           </div>
           <div className="flex gap-3">
+            <a
+              href="/admin/grants"
+              className="bg-white text-charcoal border border-charcoal font-bold text-xs uppercase tracking-wider px-6 py-3 hover:bg-off-white transition-colors"
+            >
+              Grants Pipeline
+            </a>
             <button
               onClick={runDiscovery}
               disabled={actionLoading === "discovery"}

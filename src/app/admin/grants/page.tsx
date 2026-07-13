@@ -182,12 +182,20 @@ export default function GrantsAdmin() {
             <h1 className="font-display text-3xl tracking-wider text-text-dark">GRANTS PIPELINE</h1>
             <p className="text-text-gray text-sm mt-1">Identify, draft, and submit grant applications</p>
           </div>
-          <button
-            onClick={() => setShowAddForm(!showAddForm)}
-            className="bg-charcoal text-white font-bold text-xs uppercase tracking-wider px-6 py-3 hover:bg-charcoal/90 transition-colors"
-          >
-            {showAddForm ? "Cancel" : "+ Add Grant"}
-          </button>
+          <div className="flex gap-3">
+            <a
+              href="/admin/outreach"
+              className="bg-white text-charcoal border border-charcoal font-bold text-xs uppercase tracking-wider px-6 py-3 hover:bg-off-white transition-colors"
+            >
+              Outreach Pipeline
+            </a>
+            <button
+              onClick={() => setShowAddForm(!showAddForm)}
+              className="bg-charcoal text-white font-bold text-xs uppercase tracking-wider px-6 py-3 hover:bg-charcoal/90 transition-colors"
+            >
+              {showAddForm ? "Cancel" : "+ Add Grant"}
+            </button>
+          </div>
         </div>
 
         {/* Add Grant Form */}
