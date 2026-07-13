@@ -50,9 +50,22 @@ const STATUS_COLORS: Record<string, string> = {
 
 const TABS = ["all", "discovered", "contacted", "opened", "interested", "donated", "declined"];
 
+function getSavedAuth(): { authenticated: boolean; password: string } {
+  if (typeof window === "undefined") return { authenticated: false, password: "" };
+  const saved = localStorage.getItem("dy_admin_auth");
+  if (!saved) return { authenticated: false, password: "" };
+  try {
+    const { password, expiry } = JSON.parse(saved);
+    if (Date.now() < expiry) return { authenticated: true, password };
+    localStorage.removeItem("dy_admin_auth");
+  } catch {}
+  return { authenticated: false, password: "" };
+}
+
 export default function OutreachAdmin() {
-  const [authenticated, setAuthenticated] = useState(false);
-  const [password, setPassword] = useState("");
+  const saved = getSavedAuth();
+  const [authenticated, setAuthenticated] = useState(saved.authenticated);
+  const [password, setPassword] = useState(saved.password);
   const [businesses, setBusinesses] = useState<Business[]>([]);
   const [stats, setStats] = useState<Stats | null>(null);
   const [activeTab, setActiveTab] = useState("all");
@@ -89,6 +102,7 @@ export default function OutreachAdmin() {
     });
     if (res.ok) {
       setAuthenticated(true);
+      localStorage.setItem("dy_admin_auth", JSON.stringify({ password, expiry: Date.now() + 24 * 60 * 60 * 1000 }));
     } else {
       alert("Invalid password");
     }

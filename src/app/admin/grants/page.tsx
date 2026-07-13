@@ -50,9 +50,22 @@ const CATEGORIES = [
   "general nonprofit",
 ];
 
+function getSavedAuth(): { authenticated: boolean; password: string } {
+  if (typeof window === "undefined") return { authenticated: false, password: "" };
+  const saved = localStorage.getItem("dy_admin_auth");
+  if (!saved) return { authenticated: false, password: "" };
+  try {
+    const { password, expiry } = JSON.parse(saved);
+    if (Date.now() < expiry) return { authenticated: true, password };
+    localStorage.removeItem("dy_admin_auth");
+  } catch {}
+  return { authenticated: false, password: "" };
+}
+
 export default function GrantsAdmin() {
-  const [authenticated, setAuthenticated] = useState(false);
-  const [password, setPassword] = useState("");
+  const saved = getSavedAuth();
+  const [authenticated, setAuthenticated] = useState(saved.authenticated);
+  const [password, setPassword] = useState(saved.password);
   const [grants, setGrants] = useState<Grant[]>([]);
   const [activeTab, setActiveTab] = useState("all");
   const [selectedGrant, setSelectedGrant] = useState<Grant | null>(null);
@@ -77,8 +90,12 @@ export default function GrantsAdmin() {
     const res = await fetch("/api/grants?status=all", {
       headers: { "x-admin-password": password },
     });
-    if (res.ok) setAuthenticated(true);
-    else alert("Invalid password");
+    if (res.ok) {
+      setAuthenticated(true);
+      localStorage.setItem("dy_admin_auth", JSON.stringify({ password, expiry: Date.now() + 24 * 60 * 60 * 1000 }));
+    } else {
+      alert("Invalid password");
+    }
   }
 
   async function addGrant(e: React.FormEvent<HTMLFormElement>) {
