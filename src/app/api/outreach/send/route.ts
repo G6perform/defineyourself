@@ -50,9 +50,9 @@ export async function POST(request: Request) {
   );
   const dailyLimit = parseInt(config.daily_email_limit || "20");
 
-  // Check how many emails sent today
-  const todayStart = new Date();
-  todayStart.setHours(0, 0, 0, 0);
+  // Check how many emails sent today (Pacific time)
+  const ptDate = new Date().toLocaleDateString("en-CA", { timeZone: "America/Los_Angeles" });
+  const todayStart = new Date(`${ptDate}T00:00:00-07:00`);
 
   const { count: sentToday } = await supabaseAdmin
     .from("outreach_emails")
