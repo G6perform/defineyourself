@@ -52,7 +52,25 @@ export async function GET(request: Request) {
     }
   }
 
-  // Step 2: Get today's emailed businesses
+  // Step 2b: Send follow-ups to businesses contacted 5+ days ago
+  let totalFollowUps = 0;
+  for (let i = 0; i < 3; i++) {
+    try {
+      const followRes = await fetch(`${baseUrl}/api/outreach/followup`, {
+        method: "POST",
+        headers: { "x-admin-password": adminPassword },
+      });
+      const data = await followRes.json();
+      results[`followup_${i + 1}`] = data;
+      totalFollowUps += data.sent || 0;
+      if (data.sent === 0) break;
+    } catch (error) {
+      results[`followup_${i + 1}`] = { error: String(error) };
+      break;
+    }
+  }
+
+  // Step 3: Get today's emailed businesses
   const ptDate = new Date().toLocaleDateString("en-CA", { timeZone: "America/Los_Angeles" });
   const todayStart = new Date(`${ptDate}T00:00:00-07:00`);
 
@@ -107,14 +125,15 @@ export async function GET(request: Request) {
     from: "Nick Pohl <nick@defineyourself916.org>",
     to: "defineyourself916@gmail.com",
     replyTo: "defineyourself916@gmail.com",
-    subject: `Outreach Report — ${totalEmailed} emails sent`,
+    subject: `Outreach Report — ${totalEmailed} new, ${totalFollowUps} follow-ups`,
     html: `
       <div style="font-family:Arial,sans-serif;max-width:700px;margin:0 auto;">
         <h1 style="font-size:22px;color:#111;">Daily Outreach Report</h1>
         <p style="color:#666;font-size:14px;">${new Date().toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric", timeZone: "America/Los_Angeles" })}</p>
 
         <div style="background:#f8f8f8;padding:20px;margin:20px 0;">
-          <p style="margin:4px 0;"><strong>${totalEmailed}</strong> outreach emails sent</p>
+          <p style="margin:4px 0;"><strong>${totalEmailed}</strong> new outreach emails sent</p>
+          <p style="margin:4px 0;"><strong>${totalFollowUps}</strong> follow-up emails sent</p>
           <p style="margin:4px 0;"><strong>${(readyToEmail || []).length}</strong> in queue for tomorrow</p>
         </div>
 
