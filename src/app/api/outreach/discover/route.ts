@@ -33,6 +33,56 @@ const BUSINESS_TYPES = [
   "electrician",
   "roofing_contractor",
   "general_contractor",
+  "chiropractor",
+  "physiotherapist",
+  "travel_agency",
+  "locksmith",
+  "moving_company",
+  "painter",
+  "car_wash",
+  "laundry",
+  "shoe_store",
+  "book_store",
+  "hardware_store",
+  "bicycle_store",
+  "liquor_store",
+  "meal_delivery",
+  "meal_takeaway",
+  "night_club",
+  "storage",
+  "taxi_stand",
+  "tire_shop",
+  "towing",
+  "wedding_venue",
+  "yoga_studio",
+  "pilates",
+  "martial_arts",
+  "dance_studio",
+  "music_school",
+  "art_gallery",
+  "photography_studio",
+  "print_shop",
+  "tailor",
+  "dry_cleaner",
+];
+
+const CITIES = [
+  "Sacramento, CA",
+  "Roseville, CA",
+  "Elk Grove, CA",
+  "Folsom, CA",
+  "Rancho Cordova, CA",
+  "Citrus Heights, CA",
+  "Davis, CA",
+  "West Sacramento, CA",
+  "Rocklin, CA",
+  "Lincoln, CA",
+  "Woodland, CA",
+  "Natomas, CA",
+  "Carmichael, CA",
+  "Fair Oaks, CA",
+  "Orangevale, CA",
+  "Arden-Arcade, CA",
 ];
 
 async function searchPlaces(type: string, city: string, apiKey: string) {
@@ -128,11 +178,11 @@ export async function POST(request: Request) {
   const config = Object.fromEntries(
     (settings || []).map((s) => [s.key, s.value])
   );
-  const city = config.discovery_city || "Sacramento, CA";
-
-  // Pick a random business type to search
+  // Pick a random business type and city
   const type =
     BUSINESS_TYPES[Math.floor(Math.random() * BUSINESS_TYPES.length)];
+  const city =
+    CITIES[Math.floor(Math.random() * CITIES.length)];
 
   const places = await searchPlaces(type, city, apiKey);
   let added = 0;
