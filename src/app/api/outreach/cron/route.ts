@@ -18,7 +18,23 @@ export async function GET(request: Request) {
   const adminPassword = process.env.ADMIN_PASSWORD || "";
   const results: Record<string, unknown> = {};
 
-  // Step 1: Send outreach emails (6 rounds of 5)
+  // Step 1: Discover businesses (in case 8am preview didn't run)
+  let totalDiscovered = 0;
+  for (let i = 0; i < 3; i++) {
+    try {
+      const res = await fetch(`${baseUrl}/api/outreach/discover`, {
+        method: "POST",
+        headers: { "x-admin-password": adminPassword },
+      });
+      const data = await res.json();
+      results[`discovery_${i + 1}`] = data;
+      totalDiscovered += data.added || 0;
+    } catch (error) {
+      results[`discovery_${i + 1}`] = { error: String(error) };
+    }
+  }
+
+  // Step 2: Send outreach emails (6 rounds of 5)
   let totalEmailed = 0;
   for (let i = 0; i < 6; i++) {
     try {
