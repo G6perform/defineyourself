@@ -18,9 +18,9 @@ export async function GET(request: Request) {
   const adminPassword = process.env.ADMIN_PASSWORD || "";
   const results: Record<string, unknown> = {};
 
-  // Step 1: Discover businesses (in case 8am preview didn't run)
+  // Step 1: Discover businesses (8 rounds for higher volume)
   let totalDiscovered = 0;
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 8; i++) {
     try {
       const res = await fetch(`${baseUrl}/api/outreach/discover`, {
         method: "POST",
@@ -34,9 +34,9 @@ export async function GET(request: Request) {
     }
   }
 
-  // Step 2: Send outreach emails (6 rounds of 5)
+  // Step 2: Send outreach emails (15 rounds of 5 = up to 75)
   let totalEmailed = 0;
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 15; i++) {
     try {
       const sendRes = await fetch(`${baseUrl}/api/outreach/send`, {
         method: "POST",
