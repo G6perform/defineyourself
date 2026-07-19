@@ -34,6 +34,22 @@ export async function GET(request: Request) {
     }
   }
 
+  // Step 1b: Enrich existing businesses without emails
+  for (let i = 0; i < 5; i++) {
+    try {
+      const enrichRes = await fetch(`${baseUrl}/api/outreach/enrich`, {
+        method: "POST",
+        headers: { "x-admin-password": adminPassword },
+      });
+      const data = await enrichRes.json();
+      results[`enrich_${i + 1}`] = data;
+      if (data.enriched === 0) break;
+    } catch (error) {
+      results[`enrich_${i + 1}`] = { error: String(error) };
+      break;
+    }
+  }
+
   // Step 2: Send outreach emails (15 rounds of 5 = up to 75)
   let totalEmailed = 0;
   for (let i = 0; i < 15; i++) {
