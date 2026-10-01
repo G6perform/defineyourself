@@ -49,12 +49,6 @@ export default function Navbar() {
             >
               Contact
             </Link>
-            <Link
-              href="/admin/outreach"
-              className="text-sm font-semibold uppercase tracking-wider text-text-gray hover:text-text-dark transition-colors"
-            >
-              Admin
-            </Link>
             <a
               href="https://www.instagram.com/define_yourself_916/"
               target="_blank"
@@ -127,13 +121,6 @@ export default function Navbar() {
             onClick={() => setMenuOpen(false)}
           >
             Contact
-          </Link>
-          <Link
-            href="/admin/outreach"
-            className="block py-3 text-sm font-semibold uppercase tracking-wider text-text-dark"
-            onClick={() => setMenuOpen(false)}
-          >
-            Admin
           </Link>
           <a
             href="/donate"
