@@ -19,6 +19,15 @@ type HistoryItem = {
   sent_at: string;
 };
 
+type Draft = {
+  id: string;
+  title: string;
+  subject: string;
+  body: string;
+  scheduled_for: string | null;
+  created_at: string;
+};
+
 function getSavedAuth(): { authenticated: boolean; password: string } {
   if (typeof window === "undefined") return { authenticated: false, password: "" };
   const saved = localStorage.getItem("dy_admin_auth");
@@ -35,7 +44,7 @@ export default function NewsletterAdmin() {
   const saved = getSavedAuth();
   const [authenticated, setAuthenticated] = useState(saved.authenticated);
   const [password, setPassword] = useState(saved.password);
-  const [tab, setTab] = useState<"compose" | "subscribers" | "history">("compose");
+  const [tab, setTab] = useState<"drafts" | "compose" | "subscribers" | "history">("drafts");
 
   // Compose state
   const [topic, setTopic] = useState("");
@@ -53,6 +62,11 @@ export default function NewsletterAdmin() {
   const [subLoading, setSubLoading] = useState(false);
   const [addEmail, setAddEmail] = useState("");
   const [addName, setAddName] = useState("");
+
+  // Drafts state
+  const [drafts, setDrafts] = useState<Draft[]>([]);
+  const [draftsLoading, setDraftsLoading] = useState(false);
+  const [previewDraft, setPreviewDraft] = useState<Draft | null>(null);
 
   // History state
   const [history, setHistory] = useState<HistoryItem[]>([]);
@@ -84,6 +98,18 @@ export default function NewsletterAdmin() {
     setSubLoading(false);
   }, [password]);
 
+  const fetchDrafts = useCallback(async () => {
+    setDraftsLoading(true);
+    try {
+      const res = await fetch("/api/newsletter/drafts", {
+        headers: { "x-admin-password": password },
+      });
+      const data = await res.json();
+      if (data.drafts) setDrafts(data.drafts);
+    } catch {}
+    setDraftsLoading(false);
+  }, [password]);
+
   const fetchHistory = useCallback(async () => {
     setHistLoading(true);
     try {
@@ -98,9 +124,26 @@ export default function NewsletterAdmin() {
 
   useEffect(() => {
     if (!authenticated) return;
+    if (tab === "drafts") fetchDrafts();
     if (tab === "subscribers") fetchSubscribers();
     if (tab === "history") fetchHistory();
-  }, [authenticated, tab, fetchSubscribers, fetchHistory]);
+  }, [authenticated, tab, fetchDrafts, fetchSubscribers, fetchHistory]);
+
+  function loadDraft(draft: Draft) {
+    setSubject(draft.subject);
+    setBody(draft.body);
+    setTab("compose");
+  }
+
+  async function deleteDraft(id: string) {
+    if (!confirm("Delete this draft?")) return;
+    await fetch("/api/newsletter/drafts", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json", "x-admin-password": password },
+      body: JSON.stringify({ id }),
+    });
+    fetchDrafts();
+  }
 
   async function handleGenerate() {
     if (!topic) return;
@@ -221,7 +264,7 @@ export default function NewsletterAdmin() {
 
         {/* Tabs */}
         <div className="flex gap-1 mb-6">
-          {(["compose", "subscribers", "history"] as const).map((t) => (
+          {(["drafts", "compose", "subscribers", "history"] as const).map((t) => (
             <button
               key={t}
               onClick={() => setTab(t)}
@@ -233,6 +276,65 @@ export default function NewsletterAdmin() {
             </button>
           ))}
         </div>
+
+        {/* Drafts Tab */}
+        {tab === "drafts" && (
+          <div className="bg-white p-6">
+            <h2 className="font-display text-2xl tracking-wider text-text-dark mb-6">
+              SCHEDULED NEWSLETTERS
+            </h2>
+            {draftsLoading ? (
+              <p className="text-text-gray text-sm">Loading...</p>
+            ) : drafts.length === 0 ? (
+              <p className="text-text-gray text-sm text-center py-8">No drafts yet</p>
+            ) : (
+              <div className="space-y-4">
+                {drafts.map((draft) => (
+                  <div key={draft.id} className="border border-mid-gray/50">
+                    <div className="p-4 flex items-center justify-between">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-3">
+                          <h3 className="font-semibold text-text-dark">{draft.title}</h3>
+                          {draft.scheduled_for && (
+                            <span className="text-xs bg-accent/20 text-accent-dark px-2 py-0.5 font-semibold uppercase tracking-wider">
+                              {draft.scheduled_for}
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-text-gray text-sm mt-1">Subject: {draft.subject}</p>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <button
+                          onClick={() => setPreviewDraft(previewDraft?.id === draft.id ? null : draft)}
+                          className="text-xs text-text-gray hover:text-text-dark uppercase tracking-wider"
+                        >
+                          {previewDraft?.id === draft.id ? "Close" : "Preview"}
+                        </button>
+                        <button
+                          onClick={() => loadDraft(draft)}
+                          className="bg-charcoal text-white font-bold text-xs uppercase tracking-wider px-4 py-2 hover:bg-charcoal/90 transition-colors"
+                        >
+                          Load & Send
+                        </button>
+                        <button
+                          onClick={() => deleteDraft(draft.id)}
+                          className="text-red-400 hover:text-red-600 text-xs"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                    {previewDraft?.id === draft.id && (
+                      <div className="border-t border-mid-gray/50 p-6 bg-off-white max-h-[500px] overflow-y-auto">
+                        <div dangerouslySetInnerHTML={{ __html: draft.body }} />
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Compose Tab */}
         {tab === "compose" && (
