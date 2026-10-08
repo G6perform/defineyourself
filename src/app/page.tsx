@@ -1,6 +1,7 @@
 import Image from "next/image";
 import HeroCarousel from "@/components/HeroCarousel";
 import DonateButton from "@/components/DonateButton";
+import NewsletterSignup from "@/components/NewsletterSignup";
 import { images } from "@/lib/images";
 
 const pillars = [
@@ -255,6 +256,13 @@ export default function Home() {
               title="Sacramento, CA location"
             />
           </div>
+        </div>
+      </section>
+
+      {/* Newsletter Signup */}
+      <section className="py-16 md:py-20 bg-charcoal noise-overlay">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <NewsletterSignup />
         </div>
       </section>
 

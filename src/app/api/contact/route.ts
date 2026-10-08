@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { getSupabaseAdmin } from "@/lib/supabase";
 
 export const dynamic = "force-dynamic";
 
@@ -33,6 +34,15 @@ export async function POST(request: Request) {
         <p style="color: #999; font-size: 12px;">Sent from defineyourself916.org contact form</p>
       `,
     });
+
+    // Auto-subscribe to newsletter
+    try {
+      const supabase = getSupabaseAdmin();
+      await supabase.from("newsletter_subscribers").upsert(
+        { email: email.toLowerCase().trim(), name, source: "contact_form" },
+        { onConflict: "email" }
+      );
+    } catch {}
 
     return NextResponse.json({ success: true });
   } catch (error) {

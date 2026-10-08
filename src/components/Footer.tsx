@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import NewsletterSignup from "@/components/NewsletterSignup";
 
 export default function Footer() {
   return (
@@ -71,7 +72,11 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-white/10 text-center text-sm text-white/30">
+        <div className="mt-12 pt-8 border-t border-white/10">
+          <NewsletterSignup />
+        </div>
+
+        <div className="mt-8 pt-8 border-t border-white/10 text-center text-sm text-white/30">
           &copy; {new Date().getFullYear()} Define Yourself Inc. All rights reserved. &middot; 501(c)(3) Non-Profit &middot; EIN 88-3419481
         </div>
       </div>
