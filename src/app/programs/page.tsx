@@ -87,7 +87,7 @@ export default function Programs() {
             {programs.map((program, i) => (
               <div
                 key={program.title}
-                className={`p-10 md:p-12 flex flex-col ${
+                className={`p-10 md:p-12 flex flex-col rounded-2xl ${
                   i % 2 === 0
                     ? "bg-charcoal text-white"
                     : "bg-white border border-mid-gray/20"
