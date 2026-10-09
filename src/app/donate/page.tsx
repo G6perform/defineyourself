@@ -79,7 +79,7 @@ export default function Donate() {
             will put it where it is needed most.
           </p>
           <a
-            href="https://www.zeffy.com/en-US/donation-form/donate-to-change-lives-17833"
+            href="https://www.zeffy.com/en-US/donation-form/support-our-mission-266"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-charcoal text-white font-bold text-lg uppercase tracking-wider px-16 py-5 rounded-full hover:bg-charcoal/90 transition-colors"
