@@ -106,12 +106,12 @@ export default function Donate() {
                         href={program.href!}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-block bg-charcoal text-white font-bold text-sm uppercase tracking-wider px-10 py-4 hover:bg-charcoal/90 transition-colors w-full text-center"
+                        className="inline-block bg-charcoal text-white font-bold text-sm uppercase tracking-wider px-10 py-4 rounded-full hover:bg-charcoal/90 transition-colors w-full text-center"
                       >
-                        Donate to {program.title} &rarr;
+                        Donate &rarr;
                       </a>
                     ) : (
-                      <div className="border-2 border-mid-gray/30 text-text-gray/50 font-bold text-sm uppercase tracking-wider px-10 py-4 text-center">
+                      <div className="border-2 border-mid-gray/30 text-text-gray/50 font-bold text-sm uppercase tracking-wider px-10 py-4 rounded-full text-center">
                         Coming Soon
                       </div>
                     )}
