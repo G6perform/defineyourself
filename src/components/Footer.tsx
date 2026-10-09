@@ -53,7 +53,6 @@ export default function Footer() {
               >
                 defineyourself916@gmail.com
               </a>
-              <a href="tel:+15306016625" className="text-sm text-white/50 hover:text-white transition-colors">(530) 601-6625</a>
               <p className="text-sm text-white/50">Sacramento, California</p>
               <div className="flex gap-4 mt-2">
                 <a
