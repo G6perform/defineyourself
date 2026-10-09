@@ -69,49 +69,56 @@ export default function Support() {
 
       {/* Flyer */}
       <div className="flyer bg-white overflow-hidden">
-        {/* Top Banner */}
-        <div className="bg-charcoal text-white px-10 pt-10 pb-8 text-center relative overflow-hidden">
-          <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\")" }} />
-          <div className="relative z-10">
-            <Image
-              src="/logo.png"
-              alt="Define Yourself"
-              width={180}
-              height={72}
-              className="h-12 w-auto invert brightness-200 mx-auto mb-4"
-            />
-            <h1 className="font-display text-4xl md:text-5xl tracking-wider mb-2">
-              LEVEL THE PLAYING FIELD
+        {/* Header */}
+        <div className="px-10 pt-10 pb-6 flex items-center gap-6 border-b border-mid-gray/20">
+          <Image
+            src="/logo-badge.webp"
+            alt="Define Yourself"
+            width={80}
+            height={80}
+            className="w-20 h-20 shrink-0"
+          />
+          <div>
+            <h1 className="font-display text-3xl md:text-4xl tracking-wider text-text-dark leading-none mb-1">
+              DEFINE YOURSELF INC.
             </h1>
-            <p className="text-white/50 text-xs font-semibold uppercase tracking-[0.3em]">
-              501(c)(3) Non-Profit &middot; EIN 88-3419481
+            <p className="text-text-gray text-sm">
+              501(c)(3) Non-Profit &middot; EIN 88-3419481 &middot; Sacramento, California
             </p>
           </div>
         </div>
 
-        {/* Mission Strip */}
-        <div className="bg-off-white px-10 py-5 text-center border-b border-mid-gray/20">
-          <p className="text-text-gray text-sm leading-relaxed max-w-xl mx-auto">
-            <span className="font-bold text-text-dark">The athletes with the most promise have the least access.</span>{" "}
-            Define Yourself exists to close that gap — through scholarships, performance access, mentorship, and financial literacy.
+        {/* Who We Are */}
+        <div className="px-10 py-7 border-b border-mid-gray/20">
+          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-text-gray mb-3">
+            Who We Are
+          </p>
+          <p className="text-text-dark text-sm leading-relaxed mb-3">
+            <span className="font-bold">Define Yourself Inc.</span> is a 501(c)(3) non-profit founded in Sacramento, California with one mission: <span className="font-bold">empowering youth athletes who have the drive but not the access.</span>
+          </p>
+          <p className="text-text-gray text-sm leading-relaxed">
+            Too often, the most talented young athletes never reach their potential — not because of ability, but because of circumstance. They can&apos;t afford training. They don&apos;t have exposure. No one is showing them what&apos;s possible beyond the game. We exist to change that — through direct funding, hands-on mentorship, and programs that develop the whole athlete: mind, body, and future.
           </p>
         </div>
 
-        {/* Programs Grid */}
-        <div className="px-10 py-8">
-          <p className="text-text-gray text-[10px] font-bold uppercase tracking-[0.3em] mb-5 text-center">
-            Our Programs
+        {/* What Your Donation Does */}
+        <div className="px-10 py-7 bg-off-white border-b border-mid-gray/20">
+          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-text-gray mb-3">
+            What Your Donation Does
           </p>
-          <div className="grid grid-cols-2 gap-4">
+          <p className="text-text-gray text-sm leading-relaxed mb-4">
+            Every dollar goes directly toward removing the barriers between talented young athletes and the opportunities they deserve. Your contribution funds real programs with real impact:
+          </p>
+          <div className="grid grid-cols-2 gap-3">
             {programs.map((program) => (
               <div
                 key={program.title}
-                className="border border-mid-gray/25 rounded-xl p-5"
+                className="bg-white border border-mid-gray/25 rounded-xl p-4"
               >
-                <h3 className="font-display text-sm tracking-wider text-text-dark mb-1.5">
+                <h3 className="font-display text-xs tracking-wider text-text-dark mb-1">
                   {program.title.toUpperCase()}
                 </h3>
-                <p className="text-text-gray text-xs leading-relaxed">
+                <p className="text-text-gray text-[11px] leading-relaxed">
                   {program.desc}
                 </p>
               </div>
@@ -119,59 +126,60 @@ export default function Support() {
           </div>
         </div>
 
-        {/* Impact + QR Row */}
-        <div className="px-10 pb-8">
-          <div className="bg-charcoal rounded-2xl px-8 py-7 flex flex-col md:flex-row items-center gap-8 relative overflow-hidden">
+        {/* Impact Levels */}
+        <div className="px-10 py-7 border-b border-mid-gray/20">
+          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-text-gray mb-4">
+            The Impact of Your Gift
+          </p>
+          <div className="grid grid-cols-4 gap-3 text-center">
+            <div className="bg-off-white rounded-xl p-4">
+              <p className="font-display text-2xl text-text-dark mb-1">$25</p>
+              <p className="text-text-gray text-[10px] leading-snug">Supplies for one athlete</p>
+            </div>
+            <div className="bg-off-white rounded-xl p-4">
+              <p className="font-display text-2xl text-text-dark mb-1">$100</p>
+              <p className="text-text-gray text-[10px] leading-snug">One month of training access</p>
+            </div>
+            <div className="bg-off-white rounded-xl p-4">
+              <p className="font-display text-2xl text-text-dark mb-1">$250</p>
+              <p className="text-text-gray text-[10px] leading-snug">Performance testing for a team</p>
+            </div>
+            <div className="bg-off-white rounded-xl p-4">
+              <p className="font-display text-2xl text-text-dark mb-1">$500</p>
+              <p className="text-text-gray text-[10px] leading-snug">Full scholarship for one athlete</p>
+            </div>
+          </div>
+        </div>
+
+        {/* CTA + QR */}
+        <div className="px-10 py-7">
+          <div className="bg-charcoal rounded-2xl px-8 py-6 flex items-center gap-8 relative overflow-hidden">
             <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\")" }} />
             <div className="relative z-10 flex-1">
-              <p className="text-white/40 text-[10px] font-bold uppercase tracking-[0.3em] mb-3">
-                Your Impact
+              <h2 className="font-display text-2xl tracking-wider text-white mb-2">
+                HELP US LEVEL THE PLAYING FIELD
+              </h2>
+              <p className="text-white/50 text-sm leading-relaxed">
+                Scan the QR code or visit our website to make a tax-deductible donation. Every dollar counts.
               </p>
-              <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
-                <p className="text-white">
-                  <span className="font-bold">$25</span>
-                  <span className="text-white/50"> — Athlete supplies</span>
-                </p>
-                <p className="text-white">
-                  <span className="font-bold">$250</span>
-                  <span className="text-white/50"> — Team testing</span>
-                </p>
-                <p className="text-white">
-                  <span className="font-bold">$100</span>
-                  <span className="text-white/50"> — Month of training</span>
-                </p>
-                <p className="text-white">
-                  <span className="font-bold">$500</span>
-                  <span className="text-white/50"> — Full scholarship</span>
-                </p>
+              <div className="flex items-center gap-6 mt-4 text-xs text-white/70">
+                <span className="font-bold text-white">defineyourself916.org/donate</span>
+                <span>defineyourself916@gmail.com</span>
+                <span>@define_yourself_916</span>
               </div>
             </div>
             <div className="relative z-10 flex flex-col items-center shrink-0">
               <div className="bg-white rounded-xl p-3">
                 <QRCodeSVG
                   value="https://defineyourself916.org/donate"
-                  size={110}
+                  size={100}
                   level="M"
                 />
               </div>
-              <p className="text-white/70 text-[10px] font-bold uppercase tracking-wider mt-2">
+              <p className="text-white/60 text-[10px] font-bold uppercase tracking-wider mt-2">
                 Scan to Donate
               </p>
             </div>
-          </div>
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="px-10 pb-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-5 border-t border-mid-gray/20">
-            <div className="flex items-center gap-6 text-xs text-text-gray">
-              <span className="font-bold text-text-dark">defineyourself916.org</span>
-              <span>defineyourself916@gmail.com</span>
-              <span>@define_yourself_916</span>
-            </div>
-            <p className="text-xs text-text-gray">
-              Sacramento, California &middot; All donations are tax-deductible
-            </p>
           </div>
         </div>
       </div>
