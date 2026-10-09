@@ -4,44 +4,37 @@ import { images } from "@/lib/images";
 export const metadata = {
   title: "Our Programs | Define Yourself Inc.",
   description:
-    "Athlete Development Scholarships, Identification Camps, Elite Mentorship, Performance Access, and Define Yourself Teams.",
+    "Athlete Development Scholarships, Performance Access, Athlete Mentorship, and Financial Literacy.",
 };
 
 const programs = [
   {
     title: "Athlete Development Scholarships",
     desc: "Covering training, coaching, and equipment costs for talented athletes who face financial barriers to high-level development.",
-    detail: "Too many athletes with real potential never get the chance to develop because of cost. Our scholarships remove that barrier — funding the training, coaching, and gear that let them compete at the level they deserve.",
-  },
-  {
-    title: "Identification Camps",
-    desc: "Giving athletes from underserved and under-marketed communities a platform to showcase their skills in front of college and semi-professional recruiters, with the exposure their peers often take for granted.",
-    detail: "Talent is everywhere. Opportunity is not. Our ID Camps put athletes in front of the recruiters and coaches who can change their lives — giving them the same platform that athletes in well-funded programs already have.",
-  },
-  {
-    title: "Elite Athlete Mentorship",
-    desc: "Pairing experienced athletes with younger ones for guidance in their sport, financial literacy, mental performance, and personal growth beyond the game.",
-    detail: "Development doesn't stop at the field. Our mentors help young athletes navigate the mental side of competition, build financial literacy, and prepare for life beyond sport — because the best athletes are built from the inside out.",
+    detail:
+      "Too many athletes with real potential never get the chance to develop because of cost. Our scholarships remove that barrier — funding the training, coaching, and gear that let them compete at the level they deserve.",
+    active: true,
   },
   {
     title: "Performance Access",
-    desc: "Partnering with schools and clubs that lack funding to bring advanced combine testing and performance consulting to their athletes, unlocking their potential with data-driven insight.",
-    detail: "Advanced performance testing shouldn't be reserved for programs with big budgets. We bring the same combine testing and consulting used by elite programs directly to the schools and clubs that need it most.",
+    desc: "Bringing advanced combine testing and performance consulting to teams, schools, and clubs that lack the funding to access it on their own.",
+    detail:
+      "Advanced performance testing shouldn't be reserved for programs with big budgets. We bring the same combine testing and consulting used by elite programs directly to the teams and clubs that need it most.",
+    active: true,
   },
   {
-    title: "Define Yourself Teams",
-    desc: "Launching our own youth sports teams, giving young athletes a place to play, compete, and grow within a program built around our mission — pairing real competition with training, mentorship, and development.",
-    detail: "More than a team — a program. DY Teams give athletes a place to compete while getting the training, mentorship, and personal development that help them reach their potential on and off the field.",
+    title: "Athlete Mentorship",
+    desc: "Pairing experienced athletes with younger ones for guidance in their sport, financial literacy, mental performance, and personal growth beyond the game.",
+    detail:
+      "Development doesn't stop at the field. Our mentors help young athletes navigate the mental side of competition, build financial literacy, and prepare for life beyond sport — because the best athletes are built from the inside out.",
+    active: false,
   },
   {
     title: "Financial Literacy",
     desc: "Teaching athletes how to manage money, build credit, and make smart financial decisions — skills they'll carry long after the final whistle.",
-    detail: "Most athletes never learn about money until it's too late. We teach budgeting, credit building, investing basics, and smart financial decisions early — so our athletes are prepared whether they go pro or pursue a career beyond sport.",
-  },
-  {
-    title: "Career Development",
-    desc: "Preparing athletes for life after sport with career counseling, resume building, networking opportunities, and exposure to professional pathways.",
-    detail: "The game doesn't last forever. We provide career counseling, resume workshops, interview preparation, industry exposure, and professional mentorship — building pathways to fulfilling careers in and beyond sport.",
+    detail:
+      "Most athletes never learn about money until it's too late. We teach budgeting, credit building, investing basics, and smart financial decisions early — so our athletes are prepared whether they go pro or pursue a career beyond sport.",
+    active: false,
   },
 ];
 
@@ -79,40 +72,49 @@ export default function Programs() {
             THE ATHLETES WITH THE MOST PROMISE HAVE THE LEAST ACCESS
           </h2>
           <p className="text-text-gray text-lg leading-relaxed">
-            Too often, the athletes with the most promise have the least access to the resources that would let them grow. We exist to close that gap — through scholarships, camps, mentorship, performance consulting, and our own competitive teams.
+            Too often, the athletes with the most promise have the least access
+            to the resources that would let them grow. We exist to close that gap
+            — through scholarships, performance access, mentorship, and
+            financial literacy.
           </p>
         </div>
       </section>
 
-      {/* Programs Detail */}
+      {/* Programs */}
       <section className="py-20 md:py-28 bg-off-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {programs.map((program, i) => (
-            <div
-              key={program.title}
-              className={`grid grid-cols-1 md:grid-cols-2 gap-1 ${i > 0 ? "mt-1" : ""}`}
-            >
-              <div className={`bg-white p-10 md:p-14 flex flex-col justify-center ${i % 2 === 1 ? "md:order-2" : ""}`}>
-                <span className="font-display text-5xl text-mid-gray/40 leading-none mb-4">
-                  0{i + 1}
-                </span>
-                <h3 className="font-display text-2xl md:text-3xl tracking-wider text-text-dark mb-4">
-                  {program.title.toUpperCase()}
-                </h3>
-                <p className="text-text-gray leading-relaxed mb-4">
-                  {program.desc}
-                </p>
-                <p className="text-text-gray/70 text-sm leading-relaxed">
-                  {program.detail}
-                </p>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="space-y-px">
+            {programs.map((program, i) => (
+              <div
+                key={program.title}
+                className="bg-white p-10 md:p-14 border border-mid-gray/20"
+              >
+                <div className="flex items-start gap-6 md:gap-10">
+                  <span className="font-display text-5xl md:text-6xl text-mid-gray/30 leading-none shrink-0">
+                    0{i + 1}
+                  </span>
+                  <div>
+                    <div className="flex items-center gap-4 mb-4">
+                      <h3 className="font-display text-2xl md:text-3xl tracking-wider text-text-dark">
+                        {program.title.toUpperCase()}
+                      </h3>
+                      {!program.active && (
+                        <span className="text-xs font-bold uppercase tracking-wider text-text-gray/50 border border-mid-gray/30 px-3 py-1 rounded-full whitespace-nowrap">
+                          Coming Soon
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-text-gray leading-relaxed mb-3">
+                      {program.desc}
+                    </p>
+                    <p className="text-text-gray/60 text-sm leading-relaxed">
+                      {program.detail}
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div className={`bg-charcoal p-10 md:p-14 flex flex-col justify-center ${i % 2 === 1 ? "md:order-1" : ""}`}>
-                <blockquote className="font-display text-xl md:text-2xl tracking-wider text-white leading-snug">
-                  {program.desc.toUpperCase()}
-                </blockquote>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
@@ -128,7 +130,9 @@ export default function Programs() {
                 EMPOWERING YOUTH THROUGH SPORT
               </h3>
               <p className="text-text-gray leading-relaxed">
-                To empower youth to achieve their fullest potential through holistic development — emphasizing mental, physical, and social growth via sports participation and mentorship programs.
+                To empower youth to achieve their fullest potential through
+                holistic development — emphasizing mental, physical, and social
+                growth via sports participation and mentorship programs.
               </p>
             </div>
             <div className="bg-charcoal p-10 md:p-14">
@@ -139,7 +143,10 @@ export default function Programs() {
                 BUILDING FUTURE LEADERS
               </h3>
               <p className="text-white/60 leading-relaxed">
-                To cultivate a generation of resilient leaders equipped with the skills and confidence to excel in all facets of life, while fostering a culture of community contribution and positive social impact.
+                To cultivate a generation of resilient leaders equipped with the
+                skills and confidence to excel in all facets of life, while
+                fostering a culture of community contribution and positive social
+                impact.
               </p>
             </div>
           </div>
@@ -153,18 +160,20 @@ export default function Programs() {
             EVERY DOLLAR GOES TOWARD LEVELING THE PLAYING FIELD
           </h2>
           <p className="text-white/60 max-w-2xl mx-auto mb-10 text-lg leading-relaxed">
-            Your contribution helps a young athlete attend a camp that changes their trajectory, earn a scholarship that keeps them in their sport, or find a mentor who shows them what is possible.
+            Your contribution helps a young athlete attend a camp that changes
+            their trajectory, earn a scholarship that keeps them in their sport,
+            or find a mentor who shows them what is possible.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="/donate"
-              className="inline-block bg-white text-charcoal font-bold text-sm uppercase tracking-wider px-10 py-4 hover:bg-off-white transition-colors"
+              className="inline-block bg-white text-charcoal font-bold text-sm uppercase tracking-wider px-10 py-4 rounded-full hover:bg-off-white transition-colors"
             >
               Donate Now &rarr;
             </a>
             <a
               href="/contact"
-              className="inline-block border-2 border-white/40 text-white font-bold text-sm uppercase tracking-wider px-10 py-4 hover:border-white transition-colors"
+              className="inline-block border-2 border-white/40 text-white font-bold text-sm uppercase tracking-wider px-10 py-4 rounded-full hover:border-white transition-colors"
             >
               Get In Touch
             </a>
