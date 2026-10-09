@@ -58,7 +58,7 @@ export default function Donate() {
           </p>
           <a
             href="#programs"
-            className="inline-block bg-white text-charcoal font-bold text-lg uppercase tracking-wider px-16 py-5 hover:bg-off-white transition-colors"
+            className="inline-block bg-white text-charcoal font-bold text-lg uppercase tracking-wider px-16 py-5 rounded-full hover:bg-off-white transition-colors"
           >
             Donate Now &darr;
           </a>
