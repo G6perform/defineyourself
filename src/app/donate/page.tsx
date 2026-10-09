@@ -42,8 +42,8 @@ const programs = [
 export default function Donate() {
   return (
     <div>
-      {/* Hero */}
-      <section className="py-20 md:py-28 bg-charcoal text-white noise-overlay text-center px-4">
+      {/* Hero with big Donate CTA */}
+      <section className="py-24 md:py-36 bg-charcoal text-white noise-overlay text-center px-4">
         <div className="relative z-10 max-w-4xl mx-auto">
           <p className="text-white/40 text-sm font-semibold uppercase tracking-[0.3em] mb-4">
             501(c)(3) Non-Profit &middot; EIN 88-3419481
@@ -51,15 +51,22 @@ export default function Donate() {
           <h1 className="font-display text-5xl md:text-7xl tracking-wider mb-6">
             LEVEL THE PLAYING FIELD
           </h1>
-          <p className="text-white/60 text-lg leading-relaxed max-w-2xl mx-auto">
+          <p className="text-white/60 text-lg leading-relaxed max-w-2xl mx-auto mb-10">
             Every dollar goes toward the athletes who have the drive but not the
-            access. Choose a program below to make a direct impact.
+            access. Your contribution directly funds the programs that change
+            trajectories.
           </p>
+          <a
+            href="#programs"
+            className="inline-block bg-white text-charcoal font-bold text-lg uppercase tracking-wider px-16 py-5 hover:bg-off-white transition-colors"
+          >
+            Donate Now &darr;
+          </a>
         </div>
       </section>
 
       {/* Program Cards */}
-      <section className="py-20 md:py-28 bg-off-white">
+      <section id="programs" className="py-20 md:py-28 bg-off-white scroll-mt-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <p className="text-text-gray text-sm font-semibold uppercase tracking-[0.2em] mb-4">
@@ -74,7 +81,11 @@ export default function Donate() {
             {programs.map((program, i) => (
               <div
                 key={program.title}
-                className="bg-white border border-mid-gray/30 flex flex-col"
+                className={`flex flex-col ${
+                  program.active
+                    ? "bg-white border border-mid-gray/30"
+                    : "bg-white/60 border border-mid-gray/20"
+                }`}
               >
                 <div className="p-10 md:p-12 flex flex-col flex-1">
                   <span className="font-display text-5xl text-mid-gray/40 leading-none mb-4">
