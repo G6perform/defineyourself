@@ -95,7 +95,7 @@ export default function Programs() {
               >
                 <span
                   className={`font-display text-6xl leading-none mb-6 ${
-                    i % 2 === 0 ? "text-white/15" : "text-mid-gray/25"
+                    i % 2 === 0 ? "text-white/30" : "text-charcoal/20"
                   }`}
                 >
                   0{i + 1}
