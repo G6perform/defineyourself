@@ -90,7 +90,7 @@ export default function Programs() {
                 className={`p-10 md:p-12 flex flex-col rounded-2xl ${
                   i % 2 === 0
                     ? "bg-charcoal text-white"
-                    : "bg-white border border-mid-gray/20"
+                    : "bg-white border border-mid-gray/30 shadow-lg"
                 }`}
               >
                 <span
