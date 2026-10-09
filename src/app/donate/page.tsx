@@ -123,18 +123,6 @@ export default function Donate() {
         </div>
       </section>
 
-      {/* Quote CTA */}
-      <section className="py-20 md:py-28 bg-charcoal text-white noise-overlay text-center px-4">
-        <div className="relative z-10 max-w-3xl mx-auto">
-          <blockquote className="font-display text-3xl md:text-4xl tracking-wider leading-tight mb-8">
-            &ldquo;WE WOULD BE HONORED TO PARTNER WITH YOU. ON BEHALF OF EVERY
-            ATHLETE YOU HELP REACH NEW HEIGHTS — THANK YOU.&rdquo;
-          </blockquote>
-          <p className="text-white/50 text-sm font-semibold uppercase tracking-wider">
-            Nicholas Pohl — Define Yourself Inc.
-          </p>
-        </div>
-      </section>
     </div>
   );
 }
