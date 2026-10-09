@@ -83,35 +83,57 @@ export default function Programs() {
       {/* Programs */}
       <section className="py-20 md:py-28 bg-off-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-px">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {programs.map((program, i) => (
               <div
                 key={program.title}
-                className="bg-white p-10 md:p-14 border border-mid-gray/20"
+                className={`p-10 md:p-12 flex flex-col ${
+                  i % 2 === 0
+                    ? "bg-charcoal text-white"
+                    : "bg-white border border-mid-gray/20"
+                }`}
               >
-                <div className="flex items-start gap-6 md:gap-10">
-                  <span className="font-display text-5xl md:text-6xl text-mid-gray/30 leading-none shrink-0">
-                    0{i + 1}
-                  </span>
-                  <div>
-                    <div className="flex items-center gap-4 mb-4">
-                      <h3 className="font-display text-2xl md:text-3xl tracking-wider text-text-dark">
-                        {program.title.toUpperCase()}
-                      </h3>
-                      {!program.active && (
-                        <span className="text-xs font-bold uppercase tracking-wider text-text-gray/50 border border-mid-gray/30 px-3 py-1 rounded-full whitespace-nowrap">
-                          Coming Soon
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-text-gray leading-relaxed mb-3">
-                      {program.desc}
-                    </p>
-                    <p className="text-text-gray/60 text-sm leading-relaxed">
-                      {program.detail}
-                    </p>
-                  </div>
+                <span
+                  className={`font-display text-6xl leading-none mb-6 ${
+                    i % 2 === 0 ? "text-white/15" : "text-mid-gray/25"
+                  }`}
+                >
+                  0{i + 1}
+                </span>
+                <div className="flex items-center gap-4 mb-4">
+                  <h3
+                    className={`font-display text-2xl md:text-3xl tracking-wider ${
+                      i % 2 === 0 ? "text-white" : "text-text-dark"
+                    }`}
+                  >
+                    {program.title.toUpperCase()}
+                  </h3>
+                  {!program.active && (
+                    <span
+                      className={`text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full whitespace-nowrap border ${
+                        i % 2 === 0
+                          ? "text-white/40 border-white/20"
+                          : "text-text-gray/50 border-mid-gray/30"
+                      }`}
+                    >
+                      Coming Soon
+                    </span>
+                  )}
                 </div>
+                <p
+                  className={`leading-relaxed mb-3 ${
+                    i % 2 === 0 ? "text-white/70" : "text-text-gray"
+                  }`}
+                >
+                  {program.desc}
+                </p>
+                <p
+                  className={`text-sm leading-relaxed ${
+                    i % 2 === 0 ? "text-white/40" : "text-text-gray/60"
+                  }`}
+                >
+                  {program.detail}
+                </p>
               </div>
             ))}
           </div>
