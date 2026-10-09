@@ -65,15 +65,39 @@ export default function Donate() {
         </div>
       </section>
 
+      {/* General Donation */}
+      <section id="programs" className="py-20 md:py-28 bg-white scroll-mt-0">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-text-gray text-sm font-semibold uppercase tracking-[0.2em] mb-4">
+            General Donation
+          </p>
+          <h2 className="font-display text-3xl md:text-4xl tracking-wider text-text-dark mb-4">
+            SUPPORT OUR MISSION
+          </h2>
+          <p className="text-text-gray text-lg leading-relaxed mb-10">
+            Not sure which program to support? Make a general donation and we
+            will put it where it is needed most.
+          </p>
+          <a
+            href="https://www.zeffy.com/en-US/donation-form/donate-to-change-lives-17833"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-charcoal text-white font-bold text-lg uppercase tracking-wider px-16 py-5 rounded-full hover:bg-charcoal/90 transition-colors"
+          >
+            Donate &rarr;
+          </a>
+        </div>
+      </section>
+
       {/* Program Cards */}
-      <section id="programs" className="py-20 md:py-28 bg-off-white scroll-mt-0">
+      <section className="py-20 md:py-28 bg-off-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <p className="text-text-gray text-sm font-semibold uppercase tracking-[0.2em] mb-4">
               Where Your Donation Goes
             </p>
             <h2 className="font-display text-3xl md:text-4xl tracking-wider text-text-dark">
-              CHOOSE A PROGRAM TO SUPPORT
+              OR CHOOSE A PROGRAM TO SUPPORT
             </h2>
           </div>
 
