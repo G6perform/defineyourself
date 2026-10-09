@@ -106,24 +106,12 @@ export default function Support() {
           <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-text-gray mb-3">
             What Your Donation Does
           </p>
-          <p className="text-text-gray text-sm leading-relaxed mb-4">
-            Every dollar goes directly toward removing the barriers between talented young athletes and the opportunities they deserve. Your contribution funds real programs with real impact:
+          <p className="text-text-gray text-sm leading-relaxed mb-3">
+            Every dollar goes directly toward removing the barriers between talented young athletes and the opportunities they deserve.
           </p>
-          <div className="grid grid-cols-2 gap-3">
-            {programs.map((program) => (
-              <div
-                key={program.title}
-                className="bg-white border border-mid-gray/25 rounded-xl p-4"
-              >
-                <h3 className="font-display text-xs tracking-wider text-text-dark mb-1">
-                  {program.title.toUpperCase()}
-                </h3>
-                <p className="text-text-gray text-[11px] leading-relaxed">
-                  {program.desc}
-                </p>
-              </div>
-            ))}
-          </div>
+          <p className="text-text-gray text-sm leading-relaxed">
+            Your donation funds scholarships for athletes who can&apos;t afford training, brings professional-level performance testing to underserved teams and schools, pairs young athletes with mentors who guide them on and off the field, and teaches the financial skills they&apos;ll carry for life. No overhead. No middlemen. Straight to the athletes who need it most.
+          </p>
         </div>
 
         {/* Impact Levels */}
