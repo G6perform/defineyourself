@@ -1,39 +1,39 @@
 export const metadata = {
   title: "Donate | Define Yourself Inc.",
   description:
-    "Your contribution directly funds scholarships, performance access, mentorship, and financial literacy for youth athletes who have the drive but not the access.",
+    "Your contribution directly funds scholarships, performance access, mentorship, and financial literacy for young people who have the drive but not the access.",
 };
 
 const programs = [
   {
-    title: "Athlete Development Scholarships",
-    desc: "Covering training, coaching, and equipment costs for talented athletes who face financial barriers to high-level development.",
+    title: "Youth Development Scholarships",
+    desc: "Funding training, coaching, and resources for young people who face financial barriers to development.",
     detail:
-      "Too many athletes with real potential never get the chance to develop because of cost. Our scholarships remove that barrier — funding the training, coaching, and gear that let them compete at the level they deserve.",
+      "Too many young people with real potential never get the chance to develop because of cost. Our scholarships remove that barrier — funding the resources that let them grow and reach the level they deserve.",
     href: "https://www.zeffy.com/en-US/donation-form/donate-to-change-lives-17833",
     active: true,
   },
   {
     title: "Performance Access",
-    desc: "Bringing advanced combine testing and performance consulting to teams, schools, and clubs that lack the funding to access it on their own.",
+    desc: "Partnering with schools, clubs, and community programs that lack funding to bring development resources to the youth who need them.",
     detail:
-      "Advanced performance testing shouldn't be reserved for programs with big budgets. We bring the same combine testing and consulting used by elite programs directly to the teams and clubs that need it most.",
+      "Access to quality development programs shouldn't be reserved for those with big budgets. We bring the same resources used by elite programs directly to the communities that need them most.",
     href: "https://www.zeffy.com/en-US/donation-form/metrix-team-access-fund",
     active: true,
   },
   {
-    title: "Athlete Mentorship",
-    desc: "Pairing experienced athletes with younger ones for guidance in their sport, financial literacy, mental performance, and personal growth beyond the game.",
+    title: "Mentorship",
+    desc: "Pairing young people with experienced mentors for guidance in personal growth, financial literacy, and building a path forward.",
     detail:
-      "Development doesn't stop at the field. Our mentors help young athletes navigate the mental side of competition, build financial literacy, and prepare for life beyond sport — because the best athletes are built from the inside out.",
+      "Development doesn't stop at skill building. Our mentors help youth navigate challenges, build confidence, develop financial literacy, and prepare for life — because the strongest individuals are built from the inside out.",
     href: null,
     active: false,
   },
   {
     title: "Financial Literacy",
-    desc: "Teaching athletes how to manage money, build credit, and make smart financial decisions — skills they'll carry long after the final whistle.",
+    desc: "Teaching young people how to manage money, build credit, and make smart financial decisions — skills they will carry for life.",
     detail:
-      "Most athletes never learn about money until it's too late. We teach budgeting, credit building, investing basics, and smart financial decisions early — so our athletes are prepared whether they go pro or pursue a career beyond sport.",
+      "Most young people never learn about money until it's too late. We teach budgeting, credit building, investing basics, and smart financial decisions early — so our youth are prepared for whatever comes next.",
     href: null,
     active: false,
   },
@@ -52,9 +52,9 @@ export default function Donate() {
             LEVEL THE PLAYING FIELD
           </h1>
           <p className="text-white/60 text-lg leading-relaxed max-w-2xl mx-auto mb-10">
-            Every dollar goes toward the athletes who have the drive but not the
-            access. Your contribution directly funds the programs that change
-            trajectories.
+            Every dollar goes toward the young people who have the drive but not
+            the access. Your contribution directly funds the programs that
+            change trajectories.
           </p>
           <a
             href="#programs"
