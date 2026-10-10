@@ -4,9 +4,9 @@ import Footer from "@/components/Footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Define Yourself: Unlock Potential Through Sports",
+  title: "Define Yourself: Empowering Youth. Creating Access.",
   description:
-    "Define Yourself Inc. is a 501(c)(3) non-profit dedicated to the mental, physical, and social development of young people through sport. Scholarships, ID camps, mentorship, performance access, and youth teams in Sacramento, CA.",
+    "Define Yourself Inc. is a 501(c)(3) non-profit empowering young people through mentorship, education, financial literacy, and development programs. Scholarships, performance access, and mentorship in Sacramento, CA.",
 };
 
 export default function RootLayout({
