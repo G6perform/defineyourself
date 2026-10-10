@@ -94,10 +94,10 @@ export default function Support() {
             Who We Are
           </p>
           <p className="text-text-dark text-sm leading-relaxed mb-3">
-            <span className="font-bold">Define Yourself Inc.</span> is a 501(c)(3) non-profit founded in 2026 in Sacramento, California with one mission: <span className="font-bold">empowering youth athletes who have the drive but not the access.</span>
+            <span className="font-bold">Define Yourself Inc.</span> is a 501(c)(3) non-profit founded in 2026 in Sacramento, California with one mission: <span className="font-bold">empowering young people who have the drive but not the access.</span>
           </p>
           <p className="text-text-gray text-sm leading-relaxed">
-            Too often, the most talented young athletes never reach their potential — not because of ability, but because of circumstance. They can&apos;t afford training. They don&apos;t have exposure. No one is showing them what&apos;s possible beyond the game. We exist to change that — through direct funding, hands-on mentorship, and programs that develop the whole athlete: mind, body, and future.
+            Too many young people are held back — not by ability, but by circumstance. They don&apos;t have access to the resources, mentorship, or opportunities that would let them grow. We exist to change that. Through direct funding, hands-on mentorship, education, and development programs, we help youth build confidence, discipline, and the skills to succeed in every area of life.
           </p>
         </div>
 
@@ -107,10 +107,10 @@ export default function Support() {
             What Your Donation Does
           </p>
           <p className="text-text-gray text-sm leading-relaxed mb-3">
-            Every dollar goes directly toward removing the barriers between talented young athletes and the opportunities they deserve.
+            Every dollar goes directly toward removing the barriers between young people and the opportunities they deserve.
           </p>
           <p className="text-text-gray text-sm leading-relaxed">
-            Your donation funds scholarships for athletes who can&apos;t afford training, brings professional-level performance testing to underserved teams and schools, pairs young athletes with mentors who guide them on and off the field, and teaches the financial skills they&apos;ll carry for life. No overhead. No middlemen. Straight to the athletes who need it most.
+            Your donation funds scholarships, provides access to development programs, pairs youth with mentors who guide them through sport and life, and teaches the financial and career skills they&apos;ll carry forever. No overhead. No middlemen. Straight to the young people who need it most.
           </p>
         </div>
 
@@ -122,19 +122,19 @@ export default function Support() {
           <div className="grid grid-cols-4 gap-3 text-center">
             <div className="bg-off-white rounded-xl p-4">
               <p className="font-display text-2xl text-text-dark mb-1">$25</p>
-              <p className="text-text-gray text-[10px] leading-snug">Supplies for one athlete</p>
+              <p className="text-text-gray text-[10px] leading-snug">Supplies for one youth</p>
             </div>
             <div className="bg-off-white rounded-xl p-4">
               <p className="font-display text-2xl text-text-dark mb-1">$100</p>
-              <p className="text-text-gray text-[10px] leading-snug">One month of training access</p>
+              <p className="text-text-gray text-[10px] leading-snug">One month of program access</p>
             </div>
             <div className="bg-off-white rounded-xl p-4">
               <p className="font-display text-2xl text-text-dark mb-1">$250</p>
-              <p className="text-text-gray text-[10px] leading-snug">Performance testing for a team</p>
+              <p className="text-text-gray text-[10px] leading-snug">Development resources for a group</p>
             </div>
             <div className="bg-off-white rounded-xl p-4">
               <p className="font-display text-2xl text-text-dark mb-1">$500</p>
-              <p className="text-text-gray text-[10px] leading-snug">Full scholarship for one athlete</p>
+              <p className="text-text-gray text-[10px] leading-snug">Full scholarship for one youth</p>
             </div>
           </div>
         </div>
