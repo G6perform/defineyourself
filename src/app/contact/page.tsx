@@ -59,15 +59,6 @@ export default function Contact() {
               </h2>
               <div className="space-y-4">
                 <div>
-                  <p className="text-white/40 text-xs uppercase tracking-wider mb-1">Phone</p>
-                  <a
-                    href="tel:+15306016625"
-                    className="text-white/80 hover:text-white transition-colors text-sm"
-                  >
-                    (530) 601-6625
-                  </a>
-                </div>
-                <div>
                   <p className="text-white/40 text-xs uppercase tracking-wider mb-1">Email</p>
                   <a
                     href="mailto:defineyourself916@gmail.com"
