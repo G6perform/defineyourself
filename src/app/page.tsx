@@ -5,61 +5,55 @@ import NewsletterSignup from "@/components/NewsletterSignup";
 import { images } from "@/lib/images";
 
 const pillars = [
-  { title: "Access", desc: "Removing barriers so every athlete gets a real chance." },
-  { title: "Mentorship", desc: "Experienced guides for sport, school, and life." },
-  { title: "Exposure", desc: "Platforms to be seen by recruiters and coaches." },
-  { title: "Education", desc: "Academic support and college preparation." },
-  { title: "Financial Literacy", desc: "Money skills that last beyond the game." },
-  { title: "Career Readiness", desc: "Preparing athletes for life after sport." },
+  { title: "Access", desc: "Removing barriers so every young person gets a real chance." },
+  { title: "Mentorship", desc: "Experienced guides for growth, goals, and life." },
+  { title: "Exposure", desc: "Platforms to be seen and create new opportunities." },
+  { title: "Education", desc: "Academic support and preparation for the future." },
+  { title: "Financial Literacy", desc: "Money skills that last a lifetime." },
+  { title: "Career Readiness", desc: "Preparing youth for life and professional success." },
 ];
 
 const programs = [
   {
-    title: "Athlete Development Scholarships",
-    desc: "Covering training, coaching, and equipment costs for talented athletes who face financial barriers to high-level development.",
+    title: "Youth Development Scholarships",
+    desc: "Funding training, coaching, and resources for young people who face financial barriers to development.",
     image: images.scholarships,
-    alt: "Athletes training",
+    alt: "Youth training",
   },
   {
-    title: "Identification Camps",
-    desc: "Giving athletes from underserved and under-marketed communities a platform to showcase their skills in front of college and semi-professional recruiters.",
-    image: images.idCamps,
-    alt: "Youth athlete showcase",
-  },
-  {
-    title: "Elite Athlete Mentorship",
-    desc: "Pairing experienced athletes with younger ones for guidance in their sport, financial literacy, mental performance, and personal growth beyond the game.",
+    title: "Mentorship",
+    desc: "Pairing young people with experienced mentors for guidance in personal growth, financial literacy, and life beyond the field.",
     image: images.mentorship,
     alt: "Mentorship session",
   },
   {
     title: "Performance Access",
-    desc: "Partnering with schools and clubs that lack funding to bring advanced combine testing and performance consulting to their athletes.",
+    desc: "Partnering with schools and community programs that lack funding to bring development resources to the youth who need them.",
     image: images.performance,
     alt: "Performance testing",
   },
   {
-    title: "Define Yourself Teams",
-    desc: "Our own youth sports teams — a place to play, compete, and grow within a program built around our mission.",
+    title: "Financial Literacy",
+    desc: "Teaching young people how to budget, build credit, and make smart financial decisions — skills they will carry for life.",
     image: images.teams,
-    alt: "Youth sports team",
+    alt: "Youth learning",
   },
 ];
 
 const testimonials = [
   {
     quote:
-      "Define Yourself has been transformative for my child. The coaches don't just teach sports — they teach life lessons that have made a real difference.",
+      "Define Yourself has been transformative for my child. They don't just teach sports — they teach life lessons that have made a real difference.",
     initials: "JL",
     name: "Jessica Lee",
     role: "Parent — Sacramento",
   },
   {
     quote:
-      "The mentorship program gave me the confidence and discipline I needed. I'm a better athlete and a better person because of Define Yourself.",
+      "The mentorship program gave me the confidence and discipline I needed. I'm a better person because of Define Yourself.",
     initials: "DT",
     name: "David Thompson",
-    role: "Athlete — Sacramento",
+    role: "Youth Participant — Sacramento",
   },
   {
     quote:
@@ -83,10 +77,10 @@ export default function Home() {
             Why We Exist
           </p>
           <h2 className="font-display text-3xl md:text-5xl tracking-wider text-text-dark leading-tight mb-8">
-            THE ATHLETES WITH THE MOST PROMISE OFTEN HAVE THE LEAST ACCESS
+            THE YOUNG PEOPLE WITH THE MOST PROMISE OFTEN HAVE THE LEAST ACCESS
           </h2>
           <p className="text-text-gray text-lg leading-relaxed max-w-3xl mx-auto">
-            We believe that high-level athletic training and genuine mentorship can teach and inspire the next generation of leaders, prepare them to succeed in every arena of life, and strengthen the communities they come from. We exist to close the gap.
+            We believe that mentorship, education, and holistic development can inspire the next generation of leaders, prepare them to succeed in every area of life, and strengthen the communities they come from. We exist to close the gap.
           </p>
         </div>
       </section>
@@ -132,12 +126,10 @@ export default function Home() {
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
-            {programs.map((program, i) => (
+            {programs.map((program) => (
               <div
                 key={program.title}
-                className={`group relative overflow-hidden cursor-pointer ${
-                  i === programs.length - 1 ? "md:col-span-2" : ""
-                }`}
+                className="group relative overflow-hidden cursor-pointer"
               >
                 <div className="relative aspect-[16/9]">
                   <Image
@@ -173,7 +165,7 @@ export default function Home() {
             &ldquo;TO EMPOWER YOUTH TO ACHIEVE THEIR FULLEST POTENTIAL THROUGH HOLISTIC DEVELOPMENT&rdquo;
           </blockquote>
           <p className="text-text-gray text-lg mt-8 leading-relaxed max-w-2xl mx-auto">
-            Emphasizing mental, physical, and social growth via sports participation and mentorship programs.
+            Emphasizing mental, physical, and social growth through mentorship, education, and development programs.
           </p>
         </div>
       </section>
@@ -183,10 +175,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <p className="text-text-gray text-sm font-semibold uppercase tracking-[0.2em] mb-4">
-              Champions Speak
+              Voices of Impact
             </p>
             <h2 className="font-display text-3xl md:text-4xl tracking-wider text-text-dark">
-              STORIES OF TRIUMPH & GROWTH
+              STORIES OF GROWTH
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -224,10 +216,10 @@ export default function Home() {
             Level The Playing Field
           </p>
           <h2 className="font-display text-4xl md:text-6xl tracking-wider mb-6">
-            EVERY DOLLAR GOES TOWARD THE ATHLETES WHO HAVE THE DRIVE BUT NOT THE ACCESS
+            EVERY DOLLAR GOES TOWARD THE YOUNG PEOPLE WHO HAVE THE DRIVE BUT NOT THE ACCESS
           </h2>
           <p className="text-white/60 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-            Your contribution directly funds these programs. It helps a young athlete attend a camp that changes their trajectory, earn a scholarship that keeps them in their sport, or find a mentor who shows them what is possible.
+            Your contribution directly funds these programs. It helps a young person earn a scholarship, find a mentor who shows them what is possible, or access the resources that change their trajectory.
           </p>
           <DonateButton />
         </div>
@@ -273,7 +265,7 @@ export default function Home() {
             WE WOULD BE HONORED TO PARTNER WITH YOU
           </h2>
           <p className="text-text-gray text-lg mb-10 leading-relaxed">
-            On behalf of every athlete you help reach new heights — thank you.
+            On behalf of every young person you help reach new heights — thank you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
