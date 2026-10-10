@@ -96,7 +96,7 @@ export default function Home() {
               HOLISTIC DEVELOPMENT
             </h2>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {pillars.map((pillar) => (
               <div
                 key={pillar.title}
