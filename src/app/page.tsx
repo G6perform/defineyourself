@@ -7,10 +7,8 @@ import { images } from "@/lib/images";
 const pillars = [
   { title: "Access", desc: "Removing barriers so every young person gets a real chance." },
   { title: "Mentorship", desc: "Experienced guides for growth, goals, and life." },
-  { title: "Exposure", desc: "Platforms to be seen and create new opportunities." },
   { title: "Education", desc: "Academic support and preparation for the future." },
   { title: "Financial Literacy", desc: "Money skills that last a lifetime." },
-  { title: "Career Readiness", desc: "Preparing youth for life and professional success." },
 ];
 
 const programs = [
@@ -96,7 +94,7 @@ export default function Home() {
               HOLISTIC DEVELOPMENT
             </h2>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {pillars.map((pillar) => (
               <div
                 key={pillar.title}
