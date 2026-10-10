@@ -4,36 +4,36 @@ import { images } from "@/lib/images";
 export const metadata = {
   title: "Our Programs | Define Yourself Inc.",
   description:
-    "Athlete Development Scholarships, Performance Access, Athlete Mentorship, and Financial Literacy.",
+    "Youth Development Scholarships, Performance Access, Mentorship, and Financial Literacy.",
 };
 
 const programs = [
   {
-    title: "Athlete Development Scholarships",
-    desc: "Covering training, coaching, and equipment costs for talented athletes who face financial barriers to high-level development.",
+    title: "Youth Development Scholarships",
+    desc: "Funding training, coaching, and resources for young people who face financial barriers to development.",
     detail:
-      "Too many athletes with real potential never get the chance to develop because of cost. Our scholarships remove that barrier — funding the training, coaching, and gear that let them compete at the level they deserve.",
+      "Too many young people with real potential never get the chance to develop because of cost. Our scholarships remove that barrier — funding the resources that let them grow and reach the level they deserve.",
     active: true,
   },
   {
     title: "Performance Access",
-    desc: "Bringing advanced combine testing and performance consulting to teams, schools, and clubs that lack the funding to access it on their own.",
+    desc: "Partnering with schools, clubs, and community programs that lack funding to bring development resources to the youth who need them.",
     detail:
-      "Advanced performance testing shouldn't be reserved for programs with big budgets. We bring the same combine testing and consulting used by elite programs directly to the teams and clubs that need it most.",
+      "Access to quality development programs shouldn't be reserved for those with big budgets. We bring the same resources used by elite programs directly to the communities that need them most.",
     active: true,
   },
   {
-    title: "Athlete Mentorship",
-    desc: "Pairing experienced athletes with younger ones for guidance in their sport, financial literacy, mental performance, and personal growth beyond the game.",
+    title: "Mentorship",
+    desc: "Pairing young people with experienced mentors for guidance in personal growth, financial literacy, and building a path forward.",
     detail:
-      "Development doesn't stop at the field. Our mentors help young athletes navigate the mental side of competition, build financial literacy, and prepare for life beyond sport — because the best athletes are built from the inside out.",
+      "Development doesn't stop at skill building. Our mentors help youth navigate challenges, build confidence, develop financial literacy, and prepare for life — because the strongest individuals are built from the inside out.",
     active: false,
   },
   {
     title: "Financial Literacy",
-    desc: "Teaching athletes how to manage money, build credit, and make smart financial decisions — skills they'll carry long after the final whistle.",
+    desc: "Teaching young people how to manage money, build credit, and make smart financial decisions — skills they will carry for life.",
     detail:
-      "Most athletes never learn about money until it's too late. We teach budgeting, credit building, investing basics, and smart financial decisions early — so our athletes are prepared whether they go pro or pursue a career beyond sport.",
+      "Most young people never learn about money until it's too late. We teach budgeting, credit building, investing basics, and smart financial decisions early — so our youth are prepared for whatever comes next.",
     active: false,
   },
 ];
@@ -45,7 +45,7 @@ export default function Programs() {
       <section className="relative h-[400px] md:h-[500px] overflow-hidden">
         <Image
           src={images.programsHero}
-          alt="Youth athletes"
+          alt="Youth development"
           fill
           className="object-cover"
           sizes="100vw"
@@ -69,12 +69,12 @@ export default function Programs() {
             The Problem
           </p>
           <h2 className="font-display text-3xl md:text-4xl tracking-wider text-text-dark mb-6">
-            THE ATHLETES WITH THE MOST PROMISE HAVE THE LEAST ACCESS
+            THE YOUNG PEOPLE WITH THE MOST PROMISE HAVE THE LEAST ACCESS
           </h2>
           <p className="text-text-gray text-lg leading-relaxed">
-            Too often, the athletes with the most promise have the least access
+            Too often, the youth with the most potential have the least access
             to the resources that would let them grow. We exist to close that gap
-            — through scholarships, performance access, mentorship, and
+            — through scholarships, development access, mentorship, and
             financial literacy.
           </p>
         </div>
@@ -149,12 +149,12 @@ export default function Programs() {
                 Our Mission
               </p>
               <h3 className="font-display text-2xl md:text-3xl tracking-wider text-text-dark mb-6">
-                EMPOWERING YOUTH THROUGH SPORT
+                EMPOWERING YOUTH
               </h3>
               <p className="text-text-gray leading-relaxed">
                 To empower youth to achieve their fullest potential through
                 holistic development — emphasizing mental, physical, and social
-                growth via sports participation and mentorship programs.
+                growth through mentorship, education, and development programs.
               </p>
             </div>
             <div className="bg-charcoal p-10 md:p-14">
@@ -182,9 +182,9 @@ export default function Programs() {
             EVERY DOLLAR GOES TOWARD LEVELING THE PLAYING FIELD
           </h2>
           <p className="text-white/60 max-w-2xl mx-auto mb-10 text-lg leading-relaxed">
-            Your contribution helps a young athlete attend a camp that changes
-            their trajectory, earn a scholarship that keeps them in their sport,
-            or find a mentor who shows them what is possible.
+            Your contribution helps a young person earn a scholarship, find a
+            mentor who shows them what is possible, or access the resources
+            that change their trajectory.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
