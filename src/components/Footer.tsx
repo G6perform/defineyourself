@@ -17,7 +17,7 @@ export default function Footer() {
               className="h-10 w-auto invert brightness-200 mb-4"
             />
             <p className="text-white/50 text-sm leading-relaxed">
-              Empowering youth to reach their fullest potential through sport and mentorship.
+              Empowering youth to reach their fullest potential through mentorship, education, and development.
             </p>
           </div>
 
