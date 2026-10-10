@@ -183,6 +183,14 @@ export default function OutreachAdmin() {
           </div>
           <div className="flex gap-3">
             <a
+              href="/support"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white text-charcoal border border-charcoal font-bold text-xs uppercase tracking-wider px-6 py-3 hover:bg-off-white transition-colors"
+            >
+              Flyer / One-Pager
+            </a>
+            <a
               href="/admin/grants"
               className="bg-white text-charcoal border border-charcoal font-bold text-xs uppercase tracking-wider px-6 py-3 hover:bg-off-white transition-colors"
             >
