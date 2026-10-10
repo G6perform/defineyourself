@@ -94,7 +94,7 @@ export default function Support() {
             Who We Are
           </p>
           <p className="text-text-dark text-sm leading-relaxed mb-3">
-            <span className="font-bold">Define Yourself Inc.</span> is a 501(c)(3) non-profit founded in Sacramento, California with one mission: <span className="font-bold">empowering youth athletes who have the drive but not the access.</span>
+            <span className="font-bold">Define Yourself Inc.</span> is a 501(c)(3) non-profit founded in 2026 in Sacramento, California with one mission: <span className="font-bold">empowering youth athletes who have the drive but not the access.</span>
           </p>
           <p className="text-text-gray text-sm leading-relaxed">
             Too often, the most talented young athletes never reach their potential — not because of ability, but because of circumstance. They can&apos;t afford training. They don&apos;t have exposure. No one is showing them what&apos;s possible beyond the game. We exist to change that — through direct funding, hands-on mentorship, and programs that develop the whole athlete: mind, body, and future.
