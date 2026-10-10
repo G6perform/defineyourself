@@ -48,12 +48,12 @@ export default function HeroCarousel() {
           Define Yourself Inc.
         </p>
         <h1 className="font-display text-6xl md:text-8xl lg:text-9xl text-white tracking-wider leading-none mb-6">
-          UNLOCK POTENTIAL
+          EMPOWERING YOUTH.
           <br />
-          THROUGH SPORTS
+          CREATING ACCESS.
         </h1>
         <p className="text-white/70 text-base md:text-lg max-w-2xl mb-10 leading-relaxed">
-          Empowering youth to reach their fullest potential through sport and mentorship. The athletes with the most promise often have the least access. We exist to close that gap.
+          Empowering young people to reach their fullest potential through mentorship, education, and development. The youth with the most promise often have the least access. We exist to close that gap.
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
           <a
