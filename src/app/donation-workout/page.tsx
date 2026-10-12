@@ -116,6 +116,13 @@ export default function DonationWorkoutPage() {
       <section id="signup" className="py-20 md:py-28 bg-charcoal text-white noise-overlay scroll-mt-0">
         <div className="relative z-10 max-w-lg mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
+            <Image
+              src="/logo-badge.webp"
+              alt="Define Yourself 501(c)(3)"
+              width={100}
+              height={100}
+              className="rounded-full mx-auto mb-6"
+            />
             <p className="text-white/40 text-sm font-semibold uppercase tracking-[0.3em] mb-4">
               Reserve Your Spot
             </p>
