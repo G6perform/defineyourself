@@ -5,6 +5,17 @@ export const metadata = {
   title: "Define Your Saturday | Define Yourself Inc.",
   description:
     "Join us every Saturday at 10 AM at G6 Performance for a community workout. Donate what you can — every dollar funds training and development for student athletes who need it most.",
+  openGraph: {
+    title: "Define Your Saturday",
+    description: "Community workout at G6 Performance — every Saturday at 10 AM. Donate what you can. 100% benefits Define Yourself 501(c)(3).",
+    images: [{ url: "https://defineyourself916.org/logo-badge.webp", width: 500, height: 500 }],
+  },
+  twitter: {
+    card: "summary",
+    title: "Define Your Saturday",
+    description: "Community workout at G6 Performance — every Saturday at 10 AM. Donate what you can.",
+    images: ["https://defineyourself916.org/logo-badge.webp"],
+  },
 };
 
 export default function DonationWorkoutPage() {
