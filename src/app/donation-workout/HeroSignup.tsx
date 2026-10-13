@@ -76,7 +76,8 @@ export default function HeroSignup() {
         height={80}
         className="rounded-full mx-auto mb-5"
       />
-      <p className="font-display text-2xl tracking-wider mb-8">{nextSaturday}</p>
+      <p className="font-display text-2xl tracking-wider mb-3">{nextSaturday}</p>
+      <p className="text-white/40 text-sm font-semibold uppercase tracking-[0.2em] mb-8">10 Slots Available</p>
       <form onSubmit={handleSubmit} className="space-y-4 text-left">
         <div>
           <label className="block text-white/50 text-sm font-medium mb-1.5">Name *</label>
