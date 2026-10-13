@@ -1,5 +1,5 @@
 import Image from "next/image";
-import SignupForm from "./SignupForm";
+import HeroSignup from "./HeroSignup";
 
 export const metadata = {
   title: "Donation Workout Class | Define Yourself Inc.",
@@ -10,7 +10,7 @@ export const metadata = {
 export default function DonationWorkoutPage() {
   return (
     <div>
-      {/* Hero */}
+      {/* Hero with Signup */}
       <section className="py-24 md:py-36 bg-charcoal text-white noise-overlay text-center px-4">
         <div className="relative z-10 max-w-4xl mx-auto">
           <p className="text-white/40 text-sm font-semibold uppercase tracking-[0.3em] mb-4">
@@ -24,12 +24,7 @@ export default function DonationWorkoutPage() {
             No set price. Just show up, push yourself, and donate what you can.
             Every dollar goes directly to Define Yourself.
           </p>
-          <a
-            href="#signup"
-            className="inline-block bg-white text-charcoal font-bold text-lg uppercase tracking-wider px-16 py-5 rounded-full hover:bg-off-white transition-colors"
-          >
-            Sign Up &darr;
-          </a>
+          <HeroSignup />
         </div>
       </section>
 
@@ -112,27 +107,6 @@ export default function DonationWorkoutPage() {
         </div>
       </section>
 
-      {/* Signup Form */}
-      <section id="signup" className="py-20 md:py-28 bg-charcoal text-white noise-overlay scroll-mt-0">
-        <div className="relative z-10 max-w-lg mx-auto px-4 sm:px-6">
-          <div className="text-center mb-10">
-            <Image
-              src="/logo-badge.webp"
-              alt="Define Yourself 501(c)(3)"
-              width={100}
-              height={100}
-              className="rounded-full mx-auto mb-6"
-            />
-            <p className="text-white/40 text-sm font-semibold uppercase tracking-[0.3em] mb-4">
-              Reserve Your Spot
-            </p>
-            <h2 className="font-display text-3xl md:text-4xl tracking-wider">
-              SIGN UP FOR SATURDAY
-            </h2>
-          </div>
-          <SignupForm />
-        </div>
-      </section>
     </div>
   );
 }
