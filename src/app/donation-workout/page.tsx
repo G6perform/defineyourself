@@ -2,7 +2,7 @@ import Image from "next/image";
 import HeroSignup from "./HeroSignup";
 
 export const metadata = {
-  title: "Donation Workout Class | Define Yourself Inc.",
+  title: "Define Your Saturday | Define Yourself Inc.",
   description:
     "Join us every Saturday at 10 AM at G6 Performance for a community workout. Donate what you can — every dollar funds training and development for student athletes who need it most.",
 };
@@ -17,7 +17,7 @@ export default function DonationWorkoutPage() {
             Every Saturday &middot; 10:00 AM
           </p>
           <h1 className="font-display text-5xl md:text-7xl tracking-wider mb-6">
-            DONATION WORKOUT CLASS
+            DEFINE YOUR SATURDAY
           </h1>
           <p className="text-white/60 text-lg leading-relaxed max-w-2xl mx-auto mb-10">
             A community workout hosted at G6 Performance — open to everyone, all fitness levels.
