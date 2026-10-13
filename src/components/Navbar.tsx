@@ -38,6 +38,12 @@ export default function Navbar() {
               Programs
             </Link>
             <Link
+              href="/donation-workout"
+              className="text-sm font-semibold uppercase tracking-wider text-text-gray hover:text-text-dark transition-colors"
+            >
+              Define Your Saturday
+            </Link>
+            <Link
               href="/donate"
               className="text-sm font-semibold uppercase tracking-wider text-text-gray hover:text-text-dark transition-colors"
             >
@@ -107,6 +113,13 @@ export default function Navbar() {
             onClick={() => setMenuOpen(false)}
           >
             Programs
+          </Link>
+          <Link
+            href="/donation-workout"
+            className="block py-3 text-sm font-semibold uppercase tracking-wider text-text-dark"
+            onClick={() => setMenuOpen(false)}
+          >
+            Define Your Saturday
           </Link>
           <Link
             href="/donate"
