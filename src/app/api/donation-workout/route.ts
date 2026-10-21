@@ -11,7 +11,7 @@ const NICK_PHONE = "+15306016625";
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, email, phone } = await req.json();
+    const { name, email, phone, session_day, session_date, session_time, coach } = await req.json();
 
     if (!name || !phone) {
       return NextResponse.json({ error: "Name and phone are required" }, { status: 400 });
@@ -24,6 +24,10 @@ export async function POST(req: NextRequest) {
       name,
       email: email || null,
       phone: cleanPhone,
+      session_day: session_day || null,
+      session_date: session_date || null,
+      session_time: session_time || null,
+      coach: coach || null,
     });
 
     if (error) {
@@ -33,7 +37,8 @@ export async function POST(req: NextRequest) {
 
     // Text Nick
     if (DIALPAD_API_KEY) {
-      const msg = `Donation Workout signup: ${name} (${cleanPhone}${email ? `, ${email}` : ""})`;
+      const sessionInfo = session_day ? ` for ${session_day} ${session_date} at ${session_time} w/ ${coach}` : "";
+      const msg = `Workout Series signup: ${name} (${cleanPhone}${email ? `, ${email}` : ""})${sessionInfo}`;
       await fetch("https://dialpad.com/api/v2/sms", {
         method: "POST",
         headers: {
