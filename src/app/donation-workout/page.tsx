@@ -2,18 +2,18 @@ import Image from "next/image";
 import HeroSignup from "./HeroSignup";
 
 export const metadata = {
-  title: "Define Your Saturday | Define Yourself Inc.",
+  title: "Define Yourself Workout Series | Define Yourself Inc.",
   description:
-    "Join us every Saturday at 10 AM at G6 Performance for a community workout. Donate what you can — every dollar funds training and development for student athletes who need it most.",
+    "Join us every Tuesday at 6:30 PM and Saturday at 10 AM at G6 Performance for a community workout. Donate what you can — every dollar funds training and development for student athletes who need it most.",
   openGraph: {
-    title: "Define Your Saturday",
-    description: "Community workout at G6 Performance — every Saturday at 10 AM. Donate what you can. 100% benefits Define Yourself 501(c)(3).",
+    title: "Define Yourself Workout Series",
+    description: "Community workouts at G6 Performance — Tuesdays at 6:30 PM & Saturdays at 10 AM. Donate what you can. 100% benefits Define Yourself 501(c)(3).",
     images: [{ url: "https://defineyourself916.org/logo-badge.webp", width: 500, height: 500 }],
   },
   twitter: {
     card: "summary",
-    title: "Define Your Saturday",
-    description: "Community workout at G6 Performance — every Saturday at 10 AM. Donate what you can.",
+    title: "Define Yourself Workout Series",
+    description: "Community workouts at G6 Performance — Tuesdays at 6:30 PM & Saturdays at 10 AM. Donate what you can.",
     images: ["https://defineyourself916.org/logo-badge.webp"],
   },
 };
@@ -25,10 +25,10 @@ export default function DonationWorkoutPage() {
       <section className="py-24 md:py-36 bg-charcoal text-white noise-overlay text-center px-4">
         <div className="relative z-10 max-w-4xl mx-auto">
           <p className="text-white/40 text-sm font-semibold uppercase tracking-[0.3em] mb-4">
-            Every Saturday &middot; 10:00 AM
+            Tuesdays &middot; 6:30 PM &nbsp;&amp;&nbsp; Saturdays &middot; 10:00 AM
           </p>
           <h1 className="font-display text-5xl md:text-7xl tracking-wider mb-6">
-            DEFINE YOUR SATURDAY
+            DEFINE YOURSELF WORKOUT SERIES
           </h1>
           <p className="text-white/60 text-lg leading-relaxed max-w-2xl mx-auto mb-10">
             A community workout hosted at G6 Performance — open to everyone, all fitness levels.
@@ -44,7 +44,7 @@ export default function DonationWorkoutPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             {[
-              { label: "When", value: "Every Saturday", sub: "10:00 AM" },
+              { label: "When", value: "Tuesdays & Saturdays", sub: "6:30 PM & 10:00 AM" },
               { label: "Where", value: "G6 Performance", sub: "Sacramento, CA" },
               { label: "Cost", value: "Donate What You Can", sub: "100% goes to Define Yourself" },
             ].map((item) => (

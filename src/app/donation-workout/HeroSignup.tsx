@@ -3,25 +3,39 @@
 import { useState, useMemo } from "react";
 import Image from "next/image";
 
-function getNextSaturday(): string {
+function getNextSession(): { date: string; day: string; time: string } {
   const now = new Date();
-  const day = now.getDay();
-  // Days until Saturday: if today is Saturday (6) and before 10am, use today; otherwise next Saturday
-  let daysUntil = (6 - day + 7) % 7;
-  if (daysUntil === 0) {
-    // It's Saturday — if past 10am PT, show next week
-    const pt = new Date(now.toLocaleString("en-US", { timeZone: "America/Los_Angeles" }));
-    if (pt.getHours() >= 10) daysUntil = 7;
-  }
-  if (daysUntil === 0) daysUntil = 0; // today is Saturday, before 10am
-  if (day !== 6 && daysUntil === 0) daysUntil = 7;
-  const sat = new Date(now);
-  sat.setDate(now.getDate() + daysUntil);
-  return sat.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+  const pt = new Date(now.toLocaleString("en-US", { timeZone: "America/Los_Angeles" }));
+  const dayOfWeek = pt.getDay(); // 0=Sun, 2=Tue, 6=Sat
+  const hour = pt.getHours();
+  const minute = pt.getMinutes();
+
+  // Calculate days until next Tuesday (2) and Saturday (6)
+  let daysToTue = (2 - dayOfWeek + 7) % 7;
+  let daysToSat = (6 - dayOfWeek + 7) % 7;
+
+  // If today is Tuesday and past 6:30pm, skip to next week
+  if (daysToTue === 0 && (hour > 18 || (hour === 18 && minute >= 30))) daysToTue = 7;
+  // If today is Saturday and past 10am, skip to next week
+  if (daysToSat === 0 && hour >= 10) daysToSat = 7;
+  // If neither is today, ensure non-zero
+  if (daysToTue === 0 && dayOfWeek !== 2) daysToTue = 7;
+  if (daysToSat === 0 && dayOfWeek !== 6) daysToSat = 7;
+
+  const isTuesday = daysToTue <= daysToSat;
+  const daysUntil = isTuesday ? daysToTue : daysToSat;
+
+  const next = new Date(now);
+  next.setDate(now.getDate() + daysUntil);
+  return {
+    date: next.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }),
+    day: isTuesday ? "Tuesday" : "Saturday",
+    time: isTuesday ? "6:30 PM" : "10:00 AM",
+  };
 }
 
 export default function HeroSignup() {
-  const nextSaturday = useMemo(() => getNextSaturday(), []);
+  const nextSession = useMemo(() => getNextSession(), []);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -61,7 +75,7 @@ export default function HeroSignup() {
           </svg>
         </div>
         <h3 className="font-display text-3xl tracking-wider mb-3">YOU&apos;RE IN</h3>
-        <p className="text-white/60 text-lg">We&apos;ll see you Saturday at 10 AM.</p>
+        <p className="text-white/60 text-lg">We&apos;ll see you {nextSession.day} at {nextSession.time}.</p>
         <p className="text-white/40 text-sm mt-1">G6 Performance — Sacramento, CA</p>
       </div>
     );
@@ -76,7 +90,8 @@ export default function HeroSignup() {
         height={80}
         className="rounded-full mx-auto mb-5"
       />
-      <p className="font-display text-2xl tracking-wider mb-3">{nextSaturday}</p>
+      <p className="font-display text-2xl tracking-wider mb-1">{nextSession.day}</p>
+      <p className="font-display text-2xl tracking-wider mb-3">{nextSession.date} &middot; {nextSession.time}</p>
       <p className="text-white/40 text-sm font-semibold uppercase tracking-[0.2em] mb-8">10 Slots Available</p>
       <form onSubmit={handleSubmit} className="space-y-4 text-left">
         <div>

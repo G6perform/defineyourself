@@ -42,7 +42,7 @@ export default function SignupForm() {
           </svg>
         </div>
         <h3 className="font-display text-3xl tracking-wider mb-3">YOU&apos;RE IN</h3>
-        <p className="text-white/60 text-lg">We&apos;ll see you Saturday at 10 AM.</p>
+        <p className="text-white/60 text-lg">We&apos;ll see you at the next workout!</p>
         <p className="text-white/40 text-sm mt-1">G6 Performance — Sacramento, CA</p>
       </div>
     );

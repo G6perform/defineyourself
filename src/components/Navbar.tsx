@@ -41,7 +41,7 @@ export default function Navbar() {
               href="/donation-workout"
               className="text-sm font-semibold uppercase tracking-wider text-text-gray hover:text-text-dark transition-colors"
             >
-              Define Your Saturday
+              Define Yourself Workout Series
             </Link>
             <Link
               href="/donate"
