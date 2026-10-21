@@ -25,7 +25,7 @@ export default function DonationWorkoutPage() {
       <section className="py-24 md:py-36 bg-charcoal text-white noise-overlay text-center px-4">
         <div className="relative z-10 max-w-4xl mx-auto">
           <p className="text-white/40 text-sm font-semibold uppercase tracking-[0.3em] mb-4">
-            Tuesdays &middot; 6:30 PM &nbsp;&amp;&nbsp; Saturdays &middot; 10:00 AM
+            Tuesdays &middot; 6:30 PM w/ Coach Gabrielle of G6 Performance &nbsp;&amp;&nbsp; Saturdays &middot; 10:00 AM w/ Coach Hammer of G6 Performance
           </p>
           <h1 className="font-display text-5xl md:text-7xl tracking-wider mb-6">
             DEFINE YOURSELF WORKOUT SERIES
@@ -44,7 +44,7 @@ export default function DonationWorkoutPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             {[
-              { label: "When", value: "Tuesdays & Saturdays", sub: "6:30 PM & 10:00 AM" },
+              { label: "When", value: "Tuesdays & Saturdays", sub: "6:30 PM w/ Coach Gabrielle · 10 AM w/ Coach Hammer — G6 Performance" },
               { label: "Where", value: "G6 Performance", sub: "Sacramento, CA" },
               { label: "Cost", value: "Donate What You Can", sub: "100% goes to Define Yourself" },
             ].map((item) => (

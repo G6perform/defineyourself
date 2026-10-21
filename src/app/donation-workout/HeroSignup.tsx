@@ -31,6 +31,7 @@ function getNextSession(): { date: string; day: string; time: string } {
     date: next.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }),
     day: isTuesday ? "Tuesday" : "Saturday",
     time: isTuesday ? "6:30 PM" : "10:00 AM",
+    coach: isTuesday ? "Coach Gabrielle of G6 Performance" : "Coach Hammer of G6 Performance",
   };
 }
 
@@ -75,7 +76,7 @@ export default function HeroSignup() {
           </svg>
         </div>
         <h3 className="font-display text-3xl tracking-wider mb-3">YOU&apos;RE IN</h3>
-        <p className="text-white/60 text-lg">We&apos;ll see you {nextSession.day} at {nextSession.time}.</p>
+        <p className="text-white/60 text-lg">We&apos;ll see you {nextSession.day} at {nextSession.time} w/ {nextSession.coach}.</p>
         <p className="text-white/40 text-sm mt-1">G6 Performance — Sacramento, CA</p>
       </div>
     );
@@ -90,7 +91,7 @@ export default function HeroSignup() {
         height={80}
         className="rounded-full mx-auto mb-5"
       />
-      <p className="font-display text-2xl tracking-wider mb-1">{nextSession.day}</p>
+      <p className="font-display text-2xl tracking-wider mb-1">{nextSession.day} w/ {nextSession.coach}</p>
       <p className="font-display text-2xl tracking-wider mb-3">{nextSession.date} &middot; {nextSession.time}</p>
       <p className="text-white/40 text-sm font-semibold uppercase tracking-[0.2em] mb-8">10 Slots Available</p>
       <form onSubmit={handleSubmit} className="space-y-4 text-left">
