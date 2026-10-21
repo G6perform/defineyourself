@@ -24,9 +24,6 @@ export default function DonationWorkoutPage() {
       {/* Hero with Signup */}
       <section className="py-24 md:py-36 bg-charcoal text-white noise-overlay text-center px-4">
         <div className="relative z-10 max-w-4xl mx-auto">
-          <p className="text-white/40 text-sm font-semibold uppercase tracking-[0.3em] mb-4">
-            Tuesdays &middot; 6:30 PM w/ Coach Gabrielle of G6 Performance &nbsp;&amp;&nbsp; Saturdays &middot; 10:00 AM w/ Coach Hammer of G6 Performance
-          </p>
           <h1 className="font-display text-5xl md:text-7xl tracking-wider mb-6">
             DEFINE YOURSELF WORKOUT SERIES
           </h1>
