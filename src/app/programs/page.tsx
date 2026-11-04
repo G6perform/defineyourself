@@ -36,6 +36,13 @@ const programs = [
       "Most young people never learn about money until it's too late. We teach budgeting, credit building, investing basics, and smart financial decisions early — so our youth are prepared for whatever comes next.",
     active: false,
   },
+  {
+    title: "STEM",
+    desc: "Introducing young people to science, technology, engineering, and math through hands-on projects and real-world problem solving.",
+    detail:
+      "The future belongs to those who can think critically, build solutions, and understand the world around them. Our STEM program gives youth access to hands-on learning in science, technology, engineering, and math — equipping them with the skills and confidence to pursue careers they may never have seen as possible.",
+    active: false,
+  },
 ];
 
 export default function Programs() {

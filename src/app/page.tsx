@@ -9,6 +9,7 @@ const pillars = [
   { title: "Mentorship", desc: "Experienced guides for growth, goals, and life." },
   { title: "Education", desc: "Academic support and preparation for the future." },
   { title: "Financial Literacy", desc: "Money skills that last a lifetime." },
+  { title: "STEM", desc: "Hands-on science, tech, engineering, and math for future innovators." },
 ];
 
 const programs = [
@@ -35,6 +36,12 @@ const programs = [
     desc: "Teaching young people how to budget, build credit, and make smart financial decisions — skills they will carry for life.",
     image: images.teams,
     alt: "Youth learning",
+  },
+  {
+    title: "STEM",
+    desc: "Introducing young people to science, technology, engineering, and math through hands-on projects that spark curiosity and build real-world skills.",
+    image: images.stem,
+    alt: "Youth in STEM",
   },
 ];
 
@@ -94,7 +101,7 @@ export default function Home() {
               HOLISTIC DEVELOPMENT
             </h2>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             {pillars.map((pillar) => (
               <div
                 key={pillar.title}
